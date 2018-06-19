@@ -32,3 +32,13 @@ AIC(model_position)
 logLik(model_position)
 
 #3 jeden z interakcjami - Birth_place  * tam gdzie interackja
+# gracze z US grają więcej minut, wiecej zaufania od trenerów
+model_origin <- lm(PPG ~ MPG * Birth_Place, data = data) #jedna wyrzuca i dodaje jako stałą
+summary(model_origin)
+AIC(model_origin)
+logLik(model_origin)
+
+model_origin <- lm(PPG ~ MPG + Birth_Place, data = data) #jedna wyrzuca i dodaje jako stałą
+summary(model_origin)
+AIC(model_origin)
+logLik(model_origin)
