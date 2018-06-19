@@ -1,10 +1,9 @@
-library(readr)
-setwd("C:/Users/micha/Documents/GitHub/ModelsOfLinearRegression")
-data <- read_csv("data.csv")
+#setwd("C:/Users/micha/Documents/GitHub/ModelsOfLinearRegression")
+library(readxl)
+data <- read_excel("data.xlsx")
+
 data$PPG <- round(data$PTS / data$`Games Played`, 2)
 data$MPG <- round(data$MIN / data$`Games Played`, 2)
-data = subset(data, select = -c(Birthdate, Collage,
-    Experience) )
 
 #MODEL1 - Wpływ fizyczności i czasu gry na zdobywane punkty
 #1 same zmienne ciagle 
@@ -25,10 +24,11 @@ summary(model_physical_3)
 AIC(model_physical_3)
 logLik(model_physical_3)
 
+########################################################
 #2 dodatowe kategoryczne - Position
-model_position <- lm(PPG ~ MPG + BMI + Age + Pos, data = data)
+model_position <- lm(PPG ~ Pos + FG_p + ThreeP_p + FT_p + FGA, data = data) #jedna wyrzuca i dodaje jako stałą
 summary(model_position)
 AIC(model_position)
 logLik(model_position)
 
-#3 jeden z interakcjami - Birth_place
+#3 jeden z interakcjami - Birth_place  * tam gdzie interackja
