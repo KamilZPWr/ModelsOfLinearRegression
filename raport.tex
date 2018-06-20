@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{polski}
+\mathtoolsset{showonlyrefs,mathic}
+\author{Kamil Zawistowski, Michał Cerazy}
+
+
+\begin{document}
+\tableofcontents
+\newpage
+\section{Cel}
+Celem prowadzonych badań jest odszukanie wyspępowania zależności między statystykami, w koszykówce, przy użyciu modeli regresji. 
+
+\section{Zbiór danych}
+Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. W omawianym okresie, w lidze wystąpiło 490 zawodników, co przekłada się na taką samą długość próbki. Polecenie wymaga próbki o długości co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych zdecydowaliśmy się na ich użycie. Dane pochodzą ze ........................ . 
+\subsection{Opis zmiennych}
+Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, które zmienna możep przyjąć. W sprawozdaniu zostały użyte następujące zmienne:
+\begin{itemize}
+	\item ,,Name'' -- imię oraz nazwisko,
+	\item ''Age'' -- wiek,
+	\item ,,Birth Place'' -- miejsce urodzenia (US, NONUS),
+	\item ,,Height''-- wzrost,
+	\item ,,Pos'' -- pozycja na boisku (PG, SG, C, PF, SF),
+	\item ,,Team'' -- ostatni zespół, w którym grał zawodnik,
+	\item ,,Weight'' -- waga,	
+	\item ,,BMI'' -- wskaźnik Body Mass Indeks, 
+	\item ,,Games Played'' - liczba rozegranych meczy,	
+	\item ,,MIN'' -- liczba minut na boisku,
+	\item ,,PTS'' -- liczba zdobytych punktów w sezonie,
+	\item ,,FGM'' -- 
+	\item ,,FGA'' -- 
+	\item ,,FG p'' -- 
+	\item ,,ThreePM'' -- 
+	\item ,,3PA'' -- 
+	\item ,,ThreeP p'' -- 
+	\item ,,FTM'' -- 
+	\item ,,FTA'' -- 
+	\item ,,FT p'' -- 
+	\item ,,OREB'' -- 	
+	\item ,,DREB'' -- 	
+	\item ,,REB'' -- liczba zbiórek,
+	\item ,,AST'' -- liczba asyst,
+	\item ,,STL'' -- liczba przejęć,
+	\item ,,BLK'' -- liczba bloków,
+	\item ,,TOV'' -- liczba strat,
+	\item ,,PF'' --
+	\item ,,EFF'' -- 
+	\item ,,AST/TOV'' -- 
+	\item ,,STL/TOV'' -- 
+	\item ,,PPG'' -- liczba zdobytych punktów podzielona przez liczbę rozegranych meczy,
+	\item ,,MPG'' -- liczba rozegranych minut podzielona przez liczbę rozegranych meczy.
+\end{itemize}
+\subsection{Wybór zmiennych zależnych i niezależnych}
+	Zmienną zależną jest liczba punktów zdobytych w sezonie podzielona przez liczbę rozegranych meczy. Do zmiennych niezależnych należą !!!! UZUPEŁNIĆ ZMIENNE NIEZALEŻNE !!!!. Decydujemy się na taki wybór, gdyż chcemy poznać wpływ poszczególnych statystyk na liczbę zdobywanych punktów. (?) Odnalezienie odpowiedniego modelu będzie podstawą do wyznaczania zawodników pretendujących do bycia najlepiej punktującymi w kolejnych sezonach. (?)
+	
+\section{Dopasowanie modelu}
+\subsection{Model uwzględniający cechy motoryczne zawodników}
+Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od fizyczności zawodników. Oczywiście model musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu.
+
+\subsubsection{Model WWW}
+Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. 
+
+\begin{table}[H]
+	\begin{tabular}{| c | c | c | c | c |}
+		\hline
+		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
+		Minuty na mecz & 0.54466 & 0.01290 & 42.218 & $<$2e-16\\ \hline
+		Wzrost & -0.04180 & 0.02451 & -1.706 & 0.0888\\ \hline
+		Wiek & -0.01606 & 0.02787 & -0.576 & 0.5647\\ \hline 
+		Waga & 0.03628 & 0.01750 & 2.074 & 0.0387\\ \hline
+		Stała & 2.18181 & 3.67130 & 0.594 & 0.5526 \\ \hline
+	\end{tabular}
+\caption{Model WWW - współczynniki modelu}
+\end{table}
+	
+\subsubsection{Model WW}
+Drugi z dopasowywanych modeli uwzględnia wiek oraz wagę zawodników. 
+
+\begin{table}[H]
+	\begin{tabular}{| c | c | c | c | c |}
+		\hline
+		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
+		Minuty na mecz & 0.546034 & 0.012904 & 42.313 & $<$2e-16\\ \hline
+		Wiek & -0.011282 & 0.027787 & -0.406 & 0.6849 \\ \hline 
+		Waga & 0.011216 & 0.009514 & 1.179 & 0.2391\\ \hline
+		Stała & -3.742540 & 1.191568 & -3.141 & 0.0018\\ \hline
+	\end{tabular}
+	\caption{Model WW - współczynniki modelu}
+\end{table}
+
+\subsubsection{Model WB}
+Trzeci z dopasowywanych modeli uwzględnia wiek oraz wskaźnik BMI. 
+
+\begin{table}[H]
+	\begin{tabular}{| c | c | c | c | c |}
+		\hline
+		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
+		Minuty na mecz & 0.54867 & 0.01307 & 41.975 & $<$2e-16\\ \hline
+		Wiek & -0.01794 & 0.02818 & -0.637 & 0.52477\\ \hline 
+		BMI & 0.13801 & 0.06933 & 1.991 & 0.04717\\ \hline  
+		Stała & -6.01522 & 1.83637 & -3.276 & 0.00114\\ \hline	
+	\end{tabular}
+	\caption{Model WB - współczynniki modelu}
+\end{table}
+\subsubsection{Porównanie modeli}
+\begin{table}[H]
+	\begin{tabular}{| c | c | c | c | c |}
+		\hline
+		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
+		Minuty na mecz & 0.54867 & 0.01307 & 41.975 & $<$2e-16\\ \hline
+		Wiek & -0.01794 & 0.02818 & -0.637 & 0.52477\\ \hline 
+		BMI & 0.13801 & 0.06933 & 1.991 & 0.04717\\ \hline  
+		Stała & -6.01522 & 1.83637 & -3.276 & 0.00114\\ \hline	
+	\end{tabular}
+	\caption{Porównanie modeli}
+\end{table}
+\end{document}

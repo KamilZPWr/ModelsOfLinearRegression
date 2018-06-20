@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}Cel}{2}
+\contentsline {section}{\numberline {2}Zbi\IeC {\'o}r danych}{2}
+\contentsline {subsection}{\numberline {2.1}Opis zmiennych}{2}
+\contentsline {subsection}{\numberline {2.2}Wyb\IeC {\'o}r zmiennych zale\IeC {\.z}nych i niezale\IeC {\.z}nych}{3}
+\contentsline {section}{\numberline {3}Dopasowanie modelu}{4}
+\contentsline {subsection}{\numberline {3.1}Model uwzgl\IeC {\k e}dniaj\IeC {\k a}cy cechy motoryczne zawodnik\IeC {\'o}w}{4}
+\contentsline {subsubsection}{\numberline {3.1.1}Model WWW}{4}
+\contentsline {subsubsection}{\numberline {3.1.2}Model WW}{4}
+\contentsline {subsubsection}{\numberline {3.1.3}Model WB}{4}
+\contentsline {subsubsection}{\numberline {3.1.4}Por\IeC {\'o}wnanie modeli}{5}
