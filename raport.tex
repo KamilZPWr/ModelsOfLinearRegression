@@ -58,6 +58,7 @@ Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, kt
 \subsection{Wybór zmiennych zależnych i niezależnych}
 	Zmienną zależną jest liczba punktów zdobytych w sezonie podzielona przez liczbę rozegranych meczy. Do zmiennych niezależnych należą !!!! UZUPEŁNIĆ ZMIENNE NIEZALEŻNE !!!!. Decydujemy się na taki wybór, gdyż chcemy poznać wpływ poszczególnych statystyk na liczbę zdobywanych punktów. (?) Odnalezienie odpowiedniego modelu będzie podstawą do wyznaczania zawodników pretendujących do bycia najlepiej punktującymi w kolejnych sezonach. (?)
 	
+	
 \section{Dopasowanie modelu}
 \subsection{Model uwzględniający cechy motoryczne zawodników}
 Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od fizyczności zawodników. Oczywiście model musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu.
@@ -118,7 +119,7 @@ Znając współczynniki dobranych modeli wyznaczyliśmy:
 \begin{itemize}
 	\item skorygowany współczynnik determinacji, oznaczany jako $R^2$,
 	\item kryterium Akaikego, oznaczane jako AIC,
-	\item 
+	\item logarytm wskaźnika wiarygodności, oznaczany jako LogLik,
 	\item wartość w z testu Shapiro-Wilka, oznaczana jako W.
 \end{itemize}
 
@@ -135,5 +136,5 @@ Znając współczynniki dobranych modeli wyznaczyliśmy:
 	\label{porownanie_modeli_w}
 \end{center}
 \end{table}
-Każdy z dopasowanych modeli jest ,,poprawnym modelem'', gdyż ich residua mają rozkład normalny. Sprawdzenia tej hipotezy dokonaliśmy przy użyciu testu Shapiro-Wilka (długość naszej próbki nie przekracza 5000). Wartość W jest mniejsza od liczby 0.947 (wartość zaczerpnięta z tablic), co oznacza, że nie ma podstaw by odrzucić hipotezę o normalności residuów. W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego również przemawia za wybraniem trzeciego modelu jako najlepiej opisującego badany zbiór wartości. Jedyną statystyką przemawiającą za innym modelem niż WB jest LogLik, która wskazuje, że to pierwszy model jest najlepszy. Na podstawie zaprezentowanych wyników należy wybrać model uwzględniający wiek oraz BMI zawodników.
+Każdy z dopasowanych modeli jest ,,poprawnym modelem'', gdyż ich residua mają rozkład normalny. Sprawdzenia tej hipotezy dokonaliśmy przy użyciu testu Shapiro-Wilka (długość naszej próbki nie przekracza 5000). Wartość W jest mniejsza od liczby 0.947 (wartość zaczerpnięta z tablic), co oznacza, że nie ma podstaw by odrzucić hipotezę o normalności residuów. W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego również przemawia za wybraniem trzeciego modelu jako najlepiej opisującego badany zbiór wartości. Jedyną statystyką przemawiającą za innym modelem niż WB jest logarytm wskaźnik wiarygodności, który wskazuje, że to pierwszy model jest najlepszy. Na podstawie zaprezentowanych wyników należy wybrać model uwzględniający wiek oraz BMI zawodników.
 \end{document}
