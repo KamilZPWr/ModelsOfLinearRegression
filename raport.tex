@@ -63,60 +63,77 @@ Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, kt
 Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od fizyczności zawodników. Oczywiście model musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu.
 
 \subsubsection{Model WWW}
-Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. 
+Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. Zmienne istotne dla dobranego model to minuty na mecz (jak zakładaliśmy wyżej, jest to najważniejsz czynnik) oraz waga. W tabeli \ref{model_www} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
 
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
 		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
-		Minuty na mecz & 0.54466 & 0.01290 & 42.218 & $<$2e-16\\ \hline
-		Wzrost & -0.04180 & 0.02451 & -1.706 & 0.0888\\ \hline
-		Wiek & -0.01606 & 0.02787 & -0.576 & 0.5647\\ \hline 
-		Waga & 0.03628 & 0.01750 & 2.074 & 0.0387\\ \hline
-		Stała & 2.18181 & 3.67130 & 0.594 & 0.5526 \\ \hline
+		Minuty na mecz & 0.54219 & 0.01242 & 43.638 & $<$2e-16\\ \hline
+		Wzrost & -0.03394 & 0.02154 & -1.576 & 0.1156\\ \hline
+		Wiek & -0.01660 & 0.02667 & -0.622 & 0.5340\\ \hline 
+		Waga & 0.02721 & 0.01462 & 1.861 & 0.0634\\ \hline
+		Stała & 1.63120 & 3.35589 & 0.486 & 0.6271 \\ \hline
 	\end{tabular}
 \caption{Model WWW - współczynniki modelu}
+\label{model_www}
 \end{table}
 	
 \subsubsection{Model WW}
-Drugi z dopasowywanych modeli uwzględnia wiek oraz wagę zawodników. 
+Drugi z dopasowywanych modeli uwzględnia wiek oraz wagę zawodników. Odjęcie wzrostu ma na celu sprawdzenie jak zachowa się model po odjęciu jednej zmiennej nie będącej zmienną istotną. W tabeli \ref{model_ww} przedstawione zostały współczynniki modelu WW. Jak można zauważyć zmienne istotne dla modelu nie są już takie same, do minut na mecz dołączyła wartość stała. Ponadto waga zawodnika przestała należeć do istotnych zmiennych.
 
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
 		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
-		Minuty na mecz & 0.546034 & 0.012904 & 42.313 & $<$2e-16\\ \hline
-		Wiek & -0.011282 & 0.027787 & -0.406 & 0.6849 \\ \hline 
-		Waga & 0.011216 & 0.009514 & 1.179 & 0.2391\\ \hline
-		Stała & -3.742540 & 1.191568 & -3.141 & 0.0018\\ \hline
+		Minuty na mecz & 0.54356 & 0.01241 & 43.78 & $<$2e-16\\ \hline
+		Wiek & -0.01304 & 0.02661 & -0.490 & 0.62428 \\ \hline 
+		Waga & 0.00852 & 0.00857 & 0.994 & 0.32059\\ \hline
+		Stała & -3.35012 & 1.13018 & -2.964 & 0.00318\\ \hline
 	\end{tabular}
 	\caption{Model WW - współczynniki modelu}
+	\label{model_ww}
 \end{table}
 
 \subsubsection{Model WB}
-Trzeci z dopasowywanych modeli uwzględnia wiek oraz wskaźnik BMI. 
-
+Trzeci z dopasowywanych modeli uwzględnia wiek oraz wskaźnik BMI. Omawiany wskaźnik jest popularną statystyką mówiącą o stanie zdrowia fizycznego i wyliczana jest na podstawie poniższego wzoru:
+\begin{equation}
+BMI = \frac{waga}{wzrost^2}.
+\end{equation}
+W związku z tym niejawnie do modelu włączamy wagę i wzrost zawodników ligi. Wyniki tego zabiegu przedstawione są w tabeli \ref{model_wb}. Podobnie jak w modelu WW istotne zmienne to liczba minut na boisku oraz stała. 
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
 		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
-		Minuty na mecz & 0.54867 & 0.01307 & 41.975 & $<$2e-16\\ \hline
-		Wiek & -0.01794 & 0.02818 & -0.637 & 0.52477\\ \hline 
-		BMI & 0.13801 & 0.06933 & 1.991 & 0.04717\\ \hline  
-		Stała & -6.01522 & 1.83637 & -3.276 & 0.00114\\ \hline	
+		Minuty na mecz & 0.54259 & 0.01238 & 43.838 & $<$2e-16\\ \hline
+		Wiek & -0.01608 & 0.02667 & -0.603 & 0.54676\\ \hline 
+		BMI & 0.09639 & 0.05878 & 1.640 & 0.10166\\ \hline  
+		Stała & -4.84181 & 1.60703 & -3.013 & 0.00272\\ \hline	
 	\end{tabular}
 	\caption{Model WB - współczynniki modelu}
+	\label{model_wb}
 \end{table}
 \subsubsection{Porównanie modeli}
+Znając współczynniki dobranych modeli wyznaczyliśmy:
+\begin{itemize}
+	\item skorygowany współczynnik determinacji, oznaczany jako $R^2$,
+	\item kryterium Akaikego, oznaczane jako AIC,
+	\item 
+	\item wartość w z testu Shapiro-Wilka, oznaczana jako W.
+\end{itemize}
+
 \begin{table}[H]
+	\begin{center}
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
-		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
-		Minuty na mecz & 0.54867 & 0.01307 & 41.975 & $<$2e-16\\ \hline
-		Wiek & -0.01794 & 0.02818 & -0.637 & 0.52477\\ \hline 
-		BMI & 0.13801 & 0.06933 & 1.991 & 0.04717\\ \hline  
-		Stała & -6.01522 & 1.83637 & -3.276 & 0.00114\\ \hline	
+		Model & $R^2$ & AIC & LogLik & W\\ \hline
+		WWW & 0.7977 & 2282.972 & -1135.486 & 0.95495\\ \hline
+		WW & 0.7971 & 2283.475 & -1136.737 & 0.95403\\ \hline 
+		WB & 0.7978 & 2281.766 & -1135.883 & 0.95493\\ \hline  
 	\end{tabular}
 	\caption{Porównanie modeli}
+	\label{porownanie_modeli_w}
+\end{center}
 \end{table}
+Każdy z dopasowanych modeli jest ,,poprawnym modelem'', gdyż ich residua mają rozkład normalny. Sprawdzenia tej hipotezy dokonaliśmy przy użyciu testu Shapiro-Wilka (długość naszej próbki nie przekracza 5000). Wartość W jest mniejsza od liczby 0.947 (wartość zaczerpnięta z tablic), co oznacza, że nie ma podstaw by odrzucić hipotezę o normalności residuów. W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego również przemawia za wybraniem trzeciego modelu jako najlepiej opisującego badany zbiór wartości. Jedyną statystyką przemawiającą za innym modelem niż WB jest LogLik, która wskazuje, że to pierwszy model jest najlepszy. Na podstawie zaprezentowanych wyników należy wybrać model uwzględniający wiek oraz BMI zawodników.
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.11.29)  20 JUN 2018 20:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.11.29)  21 JUN 2018 18:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -678,41 +678,36 @@ Overfull \hbox (4.31909pt too wide) in paragraph at lines 69--78
  []
 
 
-Overfull \hbox (4.31909pt too wide) in paragraph at lines 85--93
+Overfull \hbox (4.31909pt too wide) in paragraph at lines 86--94
 [][] 
  []
 
-
-Overfull \hbox (4.31909pt too wide) in paragraph at lines 100--108
+[4]
+Overfull \hbox (4.31909pt too wide) in paragraph at lines 105--113
 [][] 
  []
 
-
-Overfull \hbox (4.31909pt too wide) in paragraph at lines 112--120
-[][] 
- []
-
-[4] [5] (./raport.aux) ) 
+[5] [6] (./raport.aux) ) 
 Here is how much of TeX's memory you used:
- 3542 strings out of 492985
- 47379 string characters out of 6136283
- 115685 words of memory out of 5000000
- 7021 multiletter control sequences out of 15000+600000
+ 3546 strings out of 492985
+ 47431 string characters out of 6136283
+ 112717 words of memory out of 5000000
+ 7025 multiletter control sequences out of 15000+600000
  11627 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,25p,484b,194s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2017/texmf-dist/fonts/enc/dvips/pl/plms.enc
-}{c:/texlive/2017/texmf-dist/fonts/enc/dvips/pl/plmi.enc}{c:/texlive/2017/texmf
--dist/fonts/enc/dvips/pl/plrm.enc}<c:/texlive/2017/texmf-dist/fonts/type1/publi
+ 41i,9n,25p,917b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2017/texmf-dist/fonts/enc/dvips/pl/plrm.enc
+}{c:/texlive/2017/texmf-dist/fonts/enc/dvips/pl/plms.enc}{c:/texlive/2017/texmf
+-dist/fonts/enc/dvips/pl/plmi.enc}<c:/texlive/2017/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/pl/plbx
 10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/pl/plbx12.pfb><c:/texlive
 /2017/texmf-dist/fonts/type1/public/pl/plmi10.pfb><c:/texlive/2017/texmf-dist/f
 onts/type1/public/pl/plr10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/p
-l/plsy10.pfb>
-Output written on raport.pdf (5 pages, 54069 bytes).
+l/plr8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/pl/plsy10.pfb>
+Output written on raport.pdf (6 pages, 61239 bytes).
 PDF statistics:
- 47 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 54 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
