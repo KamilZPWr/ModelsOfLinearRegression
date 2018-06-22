@@ -11,15 +11,17 @@ data$MPG <- round(data$MIN / data$`Games Played`, 2)
 ########################################################################
 model_physical_1 <- lm(PPG ~ Height + MPG + Weight + Age, data = data)
 summary(model_physical_1)
-#plot(model_physical_1)
+plot(model_physical_1)
 AIC(model_physical_1)
 logLik(model_physical_1) 
 shapiro.test(residuals(model_physical_1))
 
-model_physical_4 <- lm(PPG ~ Height + MPG + Weight + Age - 1, data = data)
+model_physical_4 <- lm(PPG ~ Height + MPG + Weight + Age - 1, #to tworzy nowe odstające :x
+                       data = data[-c(64, 110, 195, 274, 302, 410, 434, #1 tura
+                                      30, 130, 278, 279, 289),])  #2 tura
 summary(model_physical_4)
+plot(model_physical_4)
 AIC(model_physical_4)
-#plot(model_physical_4)
 logLik(model_physical_4) 
 shapiro.test(residuals(model_physical_4))
 
@@ -61,5 +63,8 @@ cor(mydata)
 plot(model_physical_4)
 abline(h = c(-3,3), col = "blue")  #odstające
 abline(v = 4/length(residuals(model_physical_4)) * 3, col = "red") #wysoka dźwignia
+which(abs(residuals(model_physical_4)/sd(residuals(model_physical_4))) > 3)
+#Które są odstające dla modelu 4
+
 #t.test(residuals(model))
 #cor(data$PPG, data$PPG*data$MPG) tak sie interakcje znajduje?
