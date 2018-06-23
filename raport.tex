@@ -1,3 +1,4 @@
+% !TeX spellcheck = pl_PL
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -14,57 +15,69 @@
 \tableofcontents
 \newpage
 \section{Cel}
-Celem prowadzonych badań jest odszukanie wyspępowania zależności między statystykami, w koszykówce, przy użyciu modeli regresji. 
+Celem prowadzonych badań jest odszukanie występowania zależności między statystykami, w koszykówce, przy użyciu modeli regresji. 
 
 \section{Zbiór danych}
-Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. W omawianym okresie, w lidze wystąpiło 490 zawodników, co przekłada się na taką samą długość próbki. Polecenie wymaga próbki o długości co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych zdecydowaliśmy się na ich użycie. Dane pochodzą ze ........................ . 
+Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. W omawianym okresie, w lidze wystąpiło 490 zawodników, co przekłada się na taką samą długość próbki. Polecenie wymaga próbki o długości co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych zdecydowaliśmy się na ich użycie. Dane pochodzą ze strony $kaggle.com$. 
 \subsection{Opis zmiennych}
 Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, które zmienna możep przyjąć. W sprawozdaniu zostały użyte następujące zmienne:
 \begin{itemize}
 	\item ,,Name'' -- imię oraz nazwisko,
-	\item ''Age'' -- wiek,
+	\item ,,Age'' -- wiek,
 	\item ,,Birth Place'' -- miejsce urodzenia (US, NONUS),
 	\item ,,Height''-- wzrost,
-	\item ,,Pos'' -- pozycja na boisku (PG, SG, C, PF, SF),
+	\item ,,Pos'' -- pozycja, na której gra dany zawodnik (PG, SG, C, PF, SF),
 	\item ,,Team'' -- ostatni zespół, w którym grał zawodnik,
-	\item ,,Weight'' -- waga,	
-	\item ,,BMI'' -- wskaźnik Body Mass Indeks, 
-	\item ,,Games Played'' - liczba rozegranych meczy,	
-	\item ,,MIN'' -- liczba minut na boisku,
-	\item ,,PTS'' -- liczba zdobytych punktów w sezonie,
-	\item ,,FGM'' -- 
-	\item ,,FGA'' -- 
-	\item ,,FG p'' -- 
-	\item ,,ThreePM'' -- 
-	\item ,,3PA'' -- 
-	\item ,,ThreeP p'' -- 
-	\item ,,FTM'' -- 
-	\item ,,FTA'' -- 
-	\item ,,FT p'' -- 
-	\item ,,OREB'' -- 	
-	\item ,,DREB'' -- 	
-	\item ,,REB'' -- liczba zbiórek,
-	\item ,,AST'' -- liczba asyst,
-	\item ,,STL'' -- liczba przejęć,
-	\item ,,BLK'' -- liczba bloków,
-	\item ,,TOV'' -- liczba strat,
-	\item ,,PF'' --
-	\item ,,EFF'' -- 
-	\item ,,AST/TOV'' -- 
-	\item ,,STL/TOV'' -- 
-	\item ,,PPG'' -- liczba zdobytych punktów podzielona przez liczbę rozegranych meczy,
-	\item ,,MPG'' -- liczba rozegranych minut podzielona przez liczbę rozegranych meczy.
+	\item ,,Weight'' -- waga zawodnika,	
+	\item ,,BMI'' -- wskaźnik Body Mass Index, 
+	\item ,,Games Played'' - ilość rozegranych meczy w sezonie,	
+	\item ,,MIN'' -- ilość minut spędzonych na boisku w sezonie,
+	\item ,,PTS'' -- ilość punktów zdobytych w sezonie,
+	\item ,,FGM'' -- ilość trafionych rzutów z gry w sezonie,
+	\item ,,FGA'' -- ilość rzutów z gry w sezonie,
+	\item ,,FGp'' -- procentowa skuteczność rzutów z gry w sezonie,
+	\item ,,ThreePM'' -- ilość trafionych rzutów za 3 punkty w sezonie,
+	\item ,,ThreePA'' -- ilość rzutów za 3 punkty w sezonie,
+	\item ,,ThreePp'' -- procentowa skuteczność rzutów za trzy punkty w sezonie,
+	\item ,,FTM'' -- ilość trafionych rzutów osobistych w sezonie,
+	\item ,,FTA'' -- ilość rzutów osobistych w sezonie,
+	\item ,,FTp'' -- procentowa skuteczność rzutów osobistych w sezonie,
+	\item ,,OREB'' -- ilość zbiórek ofensywnych w sezonie,	
+	\item ,,DREB'' -- ilość zbiórek defensywnych w sezonie,	
+	\item ,,REB'' -- ilość zbiórek w sezonie,
+	\item ,,AST'' -- ilość asyst w sezonie,
+	\item ,,STL'' -- ilość przechwytów w sezonie,
+	\item ,,BLK'' -- ilość bloków w sezonie,
+	\item ,,TOV'' -- ilość strat w sezonie,
+	\item ,,PF'' -- ilość fauli osobistych w sezonie,
+	\item ,,EFF'' -- wydajność zawodnika,
+	\item ,,AST/TOV'' -- stosunek ilości asyst do ilości strat,
+	\item ,,STL/TOV'' -- stosunek ilości przechwytów do ilości strat,
+	\item ,,PPG'' -- średnia ilość punktów zdobywanych na mecz,
+	\item ,,MPG'' -- średnia ilość minut rozegranych na mecz.
 \end{itemize}
-\subsection{Wybór zmiennych zależnych i niezależnych}
-	Zmienną zależną jest liczba punktów zdobytych w sezonie podzielona przez liczbę rozegranych meczy. Do zmiennych niezależnych należą !!!! UZUPEŁNIĆ ZMIENNE NIEZALEŻNE !!!!. Decydujemy się na taki wybór, gdyż chcemy poznać wpływ poszczególnych statystyk na liczbę zdobywanych punktów. (?) Odnalezienie odpowiedniego modelu będzie podstawą do wyznaczania zawodników pretendujących do bycia najlepiej punktującymi w kolejnych sezonach. (?)
-	
+%\subsection{Wybór zmiennych zależnych i niezależnych}
+%	Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Do zmiennych niezależnych należą !!!! UZUPEŁNIĆ ZMIENNE NIEZALEŻNE !!!!. Decydujemy się na taki wybór, gdyż chcemy poznać wpływ poszczególnych statystyk na liczbę zdobywanych punktów. (?) Odnalezienie odpowiedniego modelu będzie podstawą do wyznaczania zawodników pretendujących do bycia najlepiej punktującymi w kolejnych sezonach. (?)
 	
 \section{Dopasowanie modelu}
+Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu. 
+
+\subsection{Model uwzględniający umiejętności rzutowe zawodników}
+Przy pierwszym ze sprawdzanych przez nas modeli skupimy się na zdolnościach rzutowych, a więc zmiennymi objaśniającymi będą średnia ilość rzutów z pola, skuteczność z pola, średnia ilość rzutów za 3 punkty, skuteczność rzutów za 3 punkty, średnia ilość rzutów osobistych, skuteczność rzutów osobistych oraz średnia ilość minut przegranych w meczu.
+
+\subsection{Model uwzględniający pozycje zawodników}
+Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika wpływa na ilość zdobywanych przez niego punktów, dlatego jako zmienne objaśniające przyjęliśmy pozycję danego gracza, średnią ilość czasu spędzanego na boisku oraz jego wiek.
+
+\subsection{Model uwzględniający pochodzenie zawodników}
+Przy ostatnim z badanych modeli chcieliśmy zbadać, czy zawodnicy ze Stanów Zjednoczonych, stanowiący większość ligi, są lepszymi punktującymi niż obcokrajowcy.
+Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz pochodzenie zawodnika.
+
+\subsection{Inne testowane modele}
 \subsection{Model uwzględniający cechy motoryczne zawodników}
-Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od fizyczności zawodników. Oczywiście model musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu.
+Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od predyspozycji fizycznych zawodników. Oczywiście, model musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu.
 
 \subsubsection{Model WWW}
-Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. Zmienne istotne dla dobranego model to minuty na mecz (jak zakładaliśmy wyżej, jest to najważniejsz czynnik) oraz waga. W tabeli \ref{model_www} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
+Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. Zmienne istotne dla dobranego model to minuty na mecz (jak zakładaliśmy wyżej, jest to najważniejszy czynnik) oraz waga. W tabeli \ref{model_www} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
 
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
@@ -76,10 +89,10 @@ Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników
 		Waga & 0.02721 & 0.01462 & 1.861 & 0.0634\\ \hline
 		Stała & 1.63120 & 3.35589 & 0.486 & 0.6271 \\ \hline
 	\end{tabular}
-\caption{Model WWW - współczynniki modelu}
-\label{model_www}
+	\caption{Model WWW - współczynniki modelu}
+	\label{model_www}
 \end{table}
-	
+
 \subsubsection{Model WW}
 Drugi z dopasowywanych modeli uwzględnia wiek oraz wagę zawodników. Odjęcie wzrostu ma na celu sprawdzenie jak zachowa się model po odjęciu jednej zmiennej nie będącej zmienną istotną. W tabeli \ref{model_ww} przedstawione zostały współczynniki modelu WW. Jak można zauważyć zmienne istotne dla modelu nie są już takie same, do minut na mecz dołączyła wartość stała. Ponadto waga zawodnika przestała należeć do istotnych zmiennych.
 
@@ -118,23 +131,29 @@ W związku z tym niejawnie do modelu włączamy wagę i wzrost zawodników ligi.
 Znając współczynniki dobranych modeli wyznaczyliśmy:
 \begin{itemize}
 	\item skorygowany współczynnik determinacji, oznaczany jako $R^2$,
-	\item kryterium Akaikego, oznaczane jako AIC,
-	\item logarytm wskaźnika wiarygodności, oznaczany jako LogLik,
-	\item wartość w z testu Shapiro-Wilka, oznaczana jako W.
+	\item kryterium Akaikego, oznaczane jako $AIC$,
+	\item logarytm wskaźnika wiarygodności, oznaczany jako $LogLik$,
+	\item wartość w z testu Shapiro-Wilka, oznaczana jako $W$.
 \end{itemize}
 
 \begin{table}[H]
 	\begin{center}
-	\begin{tabular}{| c | c | c | c | c |}
-		\hline
-		Model & $R^2$ & AIC & LogLik & W\\ \hline
-		WWW & 0.7977 & 2282.972 & -1135.486 & 0.95495\\ \hline
-		WW & 0.7971 & 2283.475 & -1136.737 & 0.95403\\ \hline 
-		WB & 0.7978 & 2281.766 & -1135.883 & 0.95493\\ \hline  
-	\end{tabular}
-	\caption{Porównanie modeli}
-	\label{porownanie_modeli_w}
-\end{center}
+		\begin{tabular}{| c | c | c | c | c |}
+			\hline
+			Model & $R^2$ & AIC & LogLik & W\\ \hline
+			WWW & 0.7977 & 2282.972 & -1135.486 & 0.95495\\ \hline
+			WW & 0.7971 & 2283.475 & -1136.737 & 0.95403\\ \hline 
+			WB & 0.7978 & 2281.766 & -1135.883 & 0.95493\\ \hline  
+		\end{tabular}
+		\caption{Porównanie modeli}
+		\label{porownanie_modeli_w}
+	\end{center}
 \end{table}
 Każdy z dopasowanych modeli jest ,,poprawnym modelem'', gdyż ich residua mają rozkład normalny. Sprawdzenia tej hipotezy dokonaliśmy przy użyciu testu Shapiro-Wilka (długość naszej próbki nie przekracza 5000). Wartość W jest mniejsza od liczby 0.947 (wartość zaczerpnięta z tablic), co oznacza, że nie ma podstaw by odrzucić hipotezę o normalności residuów. W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego również przemawia za wybraniem trzeciego modelu jako najlepiej opisującego badany zbiór wartości. Jedyną statystyką przemawiającą za innym modelem niż WB jest logarytm wskaźnik wiarygodności, który wskazuje, że to pierwszy model jest najlepszy. Na podstawie zaprezentowanych wyników należy wybrać model uwzględniający wiek oraz BMI zawodników.
+
+
+
+\section{Wybór najlepszego modelu}
+
+\section{Podsumowanie}
 \end{document}
