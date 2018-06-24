@@ -19,7 +19,7 @@
 \tableofcontents
 \newpage
 \section{Cel}
-Celem prowadzonych badań jest odszukanie występowania zależności między statystykami, w koszykówce, przy użyciu modeli regresji. 
+Celem sprawozdania jest odszukanie występowania zależności między statystykami z amerykańskiej koszykówki przy użyciu modeli regresji liniowej. 
 
 \section{Zbiór danych}
 Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. Podczas tego sezonu w lidze wystąpiło 490 zawodników (każda drużyna może zatrudniać jednocześnie 15 graczy), co przekłada się na taką samą długość próbki. Polecenie wymaga co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych, zdecydowaliśmy się na ich użycie. Dane pochodzą ze strony $kaggle.com$. 
@@ -29,10 +29,10 @@ Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, kt
 	\item ,,Name'' -- imię oraz nazwisko,
 	\item ,,Age'' -- wiek,
 	\item ,,Birth Place'' -- miejsce urodzenia (US, NONUS),
-	\item ,,Height''-- wzrost,
+	\item ,,Height''-- wzrost w centymetrach,
 	\item ,,Pos'' -- pozycja, na której gra dany zawodnik (PG, SG, C, PF, SF),
 	\item ,,Team'' -- ostatni zespół, w którym grał zawodnik,
-	\item ,,Weight'' -- waga zawodnika,	
+	\item ,,Weight'' -- waga zawodnika w kilogramach,	
 	\item ,,BMI'' -- wskaźnik Body Mass Index, 
 	\item ,,Games Played'' - ilość rozegranych meczy w sezonie,	
 	\item ,,MIN'' -- ilość minut spędzonych na boisku w sezonie,
@@ -70,10 +70,10 @@ Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, kt
 %	Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Do zmiennych niezależnych należą !!!! UZUPEŁNIĆ ZMIENNE NIEZALEŻNE !!!!. Decydujemy się na taki wybór, gdyż chcemy poznać wpływ poszczególnych statystyk na liczbę zdobywanych punktów. (?) Odnalezienie odpowiedniego modelu będzie podstawą do wyznaczania zawodników pretendujących do bycia najlepiej punktującymi w kolejnych sezonach. (?)
 	
 \section{Dopasowanie modelu}
-Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest to niezbędna informacja do analizy modelu. Dodatkowo, w naszych modelach będziemy korzystać z cech fizycznych zawodników, statystyk rzutowych, pochodzenia i pozycji, dlatego usuniemy dane dotyczące asyst, bloków, zbiórek, przechwytów, strat i drużyn, w których skończyli sezon.
+Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest to niezbędna informacja do analizy modelu. Dodatkowo, w naszych rozważaniach korzystać będziemy z cech fizycznych zawodników, statystyk rzutowych, pochodzenia i pozycji, dlatego usuniemy dane dotyczące asyst, bloków, zbiórek, przechwytów, strat oraz drużyn, w których skończyli sezon.
 
 \subsection{Poprawność modeli}
-Na wstępie należy zaznaczyć, że żaden z naszych modeli nie spełnia warunku normalności residuów. Pomimo wielu podjętych prób nie udało nam się przekształcić danych tak, by residua modelu pochodziły z rozkładu normalnego. Normalizaji residuów próbowaliśmy dokonać poprzez:
+Na wstępie należy zaznaczyć, że żaden z naszych modeli nie spełnia warunku normalności residuów. Pomimo wielu podjętych prób nie udało nam się przekształcić danych tak, by residua modelu pochodziły z rozkładu normalnego. Normalizacji residuów próbowaliśmy dokonać poprzez:
 \begin{itemize}
 	\item nałożenie logarytmu na zmienną zależną,
 	\item nałożenie pierwiastków na zmienną zależną,
@@ -81,6 +81,7 @@ Na wstępie należy zaznaczyć, że żaden z naszych modeli nie spełnia warunku
 	\item usuwanie wartości odstających,
 	\item usuwanie wartości o dużej dźwigni.
 \end{itemize}
+Dodatkowo, w każdy zaproponowany przez nas model nie posiada stałej, gdyż po sprawdzeniu kilku możliwości zauważyliśmy, że modele bez niej charakteryzują się lepszym dopasowaniem.
 \subsection{Model I: umiejętności rzutowe zawodników}
 Przy pierwszym ze sprawdzanych przez nas modeli skupimy się na zdolnościach rzutowych, a więc zmiennymi objaśniającymi będą średnia ilość rzutów z pola, skuteczność z pola, średnia ilość rzutów za 3 punkty, skuteczność rzutów za 3 punkty, średnia ilość rzutów osobistych, skuteczność rzutów osobistych oraz średnia ilość minut przegranych w meczu. W tabeli \ref{offense} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
 
@@ -107,11 +108,7 @@ Przy pierwszym ze sprawdzanych przez nas modeli skupimy się na zdolnościach rz
 \label{qqplot_offense}
 \centering
 \end{figure}
-<<<<<<< HEAD
-Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 punkty są istotne (co może dziwić przy obecnych realiach gry w koszykówkę, gdzie coraz większą wagę przykłada się do szybkich rzutów trzypunktowych). P-value dla testu F wynosi $p-value: < 2.2e-16$, a więc nasz model jest lepszy niż pewna stała. Jak się okazało, w przypadku tego modelu założenia nie są spełnione: test Shapiro-Wilka i spojrzenie na Rysunek \ref{qqplot_offense} pozwoliły odrzucić hipotezę o normalności residuów. Testy badające stałą średnią i wariancję (polegające na wielokrotnym losowaniu próbki 50 elementów i przeprowadzaniu t.testu i var.testu) wykazały, że średnia jest różna od zera oraz wariancja nie jest stała na poziomie istotności $\alpha=0.05$. Wyniki zawarte zostały w Tabeli \ref{zalozenia_offense}.
-=======
-Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 punkty są istotne( co może dziwić przy obecnych realiach gry w koszykówkę, gdzie coraz większą wagę przykłada się do szybkich rzutów trzypunktowych). Jak się okazało, w przypadku tego modelu założenia nie są spełnione: test Shapiro-Wilka i spojrzenie na Rysunek \ref{qqplot_offense} odrzuciły hipotezę o normalności residuów, a testy badające stałą średnią i wariancję( polegające na wielokrotnym losowaniu próbki 50 elementów i przeprowadzaniu t.testu i var.testu) wykazały, że średnia jest różna od zera oraz wariancja nie jest stała na poziomie istotności $\alpha=0.05$. Wyniki zawarte zostały w Tabeli \ref{zalozenia_offense}.
->>>>>>> 511d184aee5b6c2edc881f0ec6dab71d8ce841a8
+Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 punkty są istotne( co może dziwić przy obecnych realiach gry w koszykówkę, gdzie coraz większą wagę przykłada się do szybkich rzutów trzypunktowych). Jak się okazało, w przypadku tego modelu założenia nie są spełnione: test Shapiro-Wilka i spojrzenie na Rysunek \ref{qqplot_offense} odrzuciły hipotezę o normalności residuów, a testy badające średnią i wariancję( polegające na wielokrotnym losowaniu próbki 50 elementów i przeprowadzaniu t.testu i var.testu) wykazały, że średnia jest różna od zera oraz wariancja nie jest stała na poziomie istotności $\alpha=0.05$. Wyniki zawarte zostały w Tabeli \ref{zalozenia_offense}.
 \begin{table}[H]
 	\begin{center}
 	\begin{tabular}{| c | c | c | c |}
@@ -129,12 +126,9 @@ Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 pun
 	\label{leverage_offense}
 	\centering
 \end{figure}
-Na Rysunku \ref{leverage_offense} niebieskimi liniami zaznaczono próg dla wartości odstających, czarną natomiast dla tych o wysokiej dźwigni. Niestety, po ich usunięciu model nadal nie spełniał założeń i pojawiły się kolejne problematyczne obserwacje (próbowaliśmy eliminować je do skutku, jednak również to nie przyniosło oczekiwanych rezultatów).
- %pomimo wielokrotnego usuwania tych obserwacji 
-
+Na Rysunku \ref{leverage_offense} niebieskimi liniami zaznaczono próg dla wartości odstających, czarną natomiast tych o wysokiej dźwigni. Niestety, po ich usunięciu model nadal nie spełniał założeń i pojawiły się kolejne problematyczne obserwacje( próbowaliśmy eliminować je do skutku, jednak również to nie przyniosło oczekiwanych rezultatów).
 \subsection{Model II: pozycje zawodników}
-Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika wpływa na ilość zdobywanych przez niego punktów, dlatego jako zmienne objaśniające przyjęliśmy pozycję danego gracza, średnią ilość czasu spędzanego na boisku oraz jego wiek. W tabeli \ref{position} przedstawione są współczynniki dopasowanego modelu. Wszystkie zmienne poza wiekiem są oznaczone jaki zmienne istotne modelu. 
-
+Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika wpływa na ilość zdobywanych przez niego punktów, dlatego jako zmienne objaśniające przyjęliśmy pozycję danego gracza, średnią ilość czasu spędzanego na boisku oraz jego wiek. W tabeli \ref{position} przedstawione są współczynniki dopasowanego modelu. Jak widać, wszystkie zmienne poza wiekiem okazały się być istotne. 
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{| c | c | c | c | c |}
@@ -152,7 +146,7 @@ Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika
 		\label{position}
 	\end{center}
 \end{table}
-W tabeli \ref{zalozenia_position} przedstawione są wyniki testu Shapiro-Wilka oraz testów średniej i wariancji residuów. Jak wyżej wspomnieliśmy, niestety model nie spełnia założenia normalności badanych danych (jak widać również na rysunku \ref{qqplot_position}). Na rysunku \ref{leverage_position} zaznaczne zostały wartości odstające, których usunięcie również nie pomogło w normalizacji residuów.
+W tabeli \ref{zalozenia_position} przedstawione są wyniki testu Shapiro-Wilka oraz testów średniej i wariancji residuów. Jak wyżej wspomnieliśmy, model nie spełnia założenia normalności badanych wartości resztowych( jak widać również na Rysunku \ref{qqplot_position}). Na Rysunku \ref{leverage_position} zaznaczone zostały wartości odstające, których usunięcie również nie pomogło w normalizacji residuów.
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{| c | c | c | c |}
@@ -164,7 +158,6 @@ W tabeli \ref{zalozenia_position} przedstawione są wyniki testu Shapiro-Wilka o
 		\label{zalozenia_position}
 	\end{center}
 \end{table}
-
 \begin{figure}[t]
 	\includegraphics[width=\textwidth]{position_2}
 	\caption{QQplot dla modelu uwzględniającego pozycje}
@@ -180,8 +173,19 @@ W tabeli \ref{zalozenia_position} przedstawione są wyniki testu Shapiro-Wilka o
 
 \subsection{Model III: pochodzenie zawodników}
 Przy ostatnim z badanych modeli chcieliśmy zbadać, czy zawodnicy ze Stanów Zjednoczonych, stanowiący większość ligi, są lepszymi punktującymi niż obcokrajowcy.
-Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz pochodzenie zawodnika. W tabeli \ref{origin} przedstawione są współczynniki dobranego modelu jak widać wszystkie zmienne są zmiennymi istotnymi.
-
+Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz pochodzenie zawodnika. W Tabeli \ref{origin} przedstawione są współczynniki dobranego modelu, gdzie jak można zauważyć, wszystkie parametry poza iloczynem średniej ilości minut na mecz i indykatora urodzenia w USA okazały się być istotnymi.
+Testy badające średnią i wariancję wykazały, że średnia jest różna od zera oraz wariancja nie jest stała na poziomie istotności $\alpha=0.05$. Wyniki zawarte zostały w Tabeli \ref{zalozenia_offense}.
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c |}
+			\hline
+			W & p-value & ConstMeanMC & ConstVarMC\\ \hline
+			0.95802 & 1.347e-10 & 0.0416 & 0.1664 \\ \hline
+		\end{tabular}
+		\caption{Model rzutowy - testy założeń}
+		\label{zalozenia_origin}
+	\end{center}
+\end{table}
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{| c | c | c | c | c |}
@@ -196,26 +200,14 @@ Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz p
 		\label{origin}
 	\end{center}
 \end{table}
-W tabeli \ref{zalozenia_origin} zaprezentowane są wyniki przeprowadzanych we wszystkich modelach testów. Na podstawie tych wyników można stwierdzić, że residua modelu nie pochodzą z rozkładu normalnego. Podjęte przez nas próby normalizacji residuów nie przyniosły efektów również w tym przypadku.
-\begin{table}[H]
-	\begin{center}
-		\begin{tabular}{| c | c | c | c |}
-			\hline
-			W & p-value & ConstMeanMC & ConstVarMC\\ \hline
-			0.95802 & 1.347e-10 & 0.0443 & 0.1693 \\ \hline
-		\end{tabular}
-		\caption{Model uwzględniający pochodzenie - testy założeń}
-		\label{zalozenia_origin}
-	\end{center}
-\end{table}
-Na rysynku \ref{qqplot_origin} przedstawiony jest wykres ,,qqplot'' i jego ocena jest bardzo prosta i utwierdza nas w przekonaniu, że residua nie pochodzą z rozkładu normalnego.
+Na Rysunku \ref{qqplot_origin} przedstawiony jest wykres kwantyl--kwantyl, którego ocena utwierdza nas w przekonaniu, że residua nie pochodzą z rozkładu normalnego.
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{origin_2}
 \caption{QQplot dla modelu uwzględniającego pochodzenie}
 \label{qqplot_origin}
 \centering
 \end{figure}
-Rysunek \ref{leverage_origin} przedstawia wartości odstające oraz o dużej dźwigni, których usunięcie również nie zmieniło poprawności modelu.
+Rysunek \ref{leverage_origin} przedstawia wartości odstające oraz o dużej dźwigni, których usunięcie również nie wpłynęło pozytywnie na poprawność modelu.
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{origin_4}
 \caption{Wykres residuów i dźwigni dla modelu uwzględniającego pochodzenie}
@@ -245,40 +237,36 @@ Znając współczynniki dobranych modeli wyznaczyliśmy:
 		\label{porownanie_modeli}
 	\end{center}
 \end{table}
-Podsumowując wyżej wymienione modele można stwierdzić, że najlepszym z nich jest model uwzględniający zdobywanie punktów przez zawodników. Taki wniosek nasuwa się po analizie tabeli \ref{porownanie_modeli}. Współczynnik determinacji jest największy dla tego właśnie modelu, co oznacza, że jest on najlepiej dopasowany do naszych danych. Taką konkluzję potwierdza również kryterium informacyjne Akaikego, które najmniejszą wartość przyjmuje dla modelu nr I.
+Podsumowując wyżej wymienione modele można stwierdzić, że najlepszym z nich jest model uwzględniający umiejętności rzutowe zawodników. Taki wniosek nasuwa się po analizie Tabeli \ref{porownanie_modeli}. Współczynniki determinacji oraz logarytm wskaźnika wiarygodności są największe dla tego właśnie modelu, co oznacza, że jest on najlepiej dopasowany do naszych danych. Taką konkluzję potwierdza również kryterium informacyjne Akaikego, które najmniejszą wartość przyjmuje dla modelu nr I.
 
 \section{Inne testowane modele}
 \subsection{Model uwzględniający cechy motoryczne zawodników}
-Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od predyspozycji fizycznych zawodników. Oczywiście, model musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu.
+Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od predyspozycji fizycznych zawodników. Oczywiście, każdy z tych modeli musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest to niezbędna informacja do analizy modelu.
 
 \subsubsection{Model WWW}
-Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. Zmienne istotne dla dobranego model to minuty na mecz (jak zakładaliśmy wyżej, jest to najważniejszy czynnik) oraz waga. W tabeli \ref{model_www} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
-
+Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. Jedyną wpływową zmienną okazała się być ilość minut na mecz (jak zakładaliśmy wyżej, jest to najważniejszy czynnik). W tabeli \ref{model_www} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
 		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
-		Minuty na mecz & 0.54219 & 0.01242 & 43.638 & $<$2e-16\\ \hline
-		Wzrost & -0.03394 & 0.02154 & -1.576 & 0.1156\\ \hline
-		Wiek & -0.01660 & 0.02667 & -0.622 & 0.5340\\ \hline 
-		Waga & 0.02721 & 0.01462 & 1.861 & 0.0634\\ \hline
-		Stała & 1.63120 & 3.35589 & 0.486 & 0.6271 \\ \hline
+		Minuty na mecz & 0.542353 & 0.012281 & 44.161 & $<$2e-16\\ \hline
+		Wzrost & -0.023874 & 0.007604 & -3.140 & 0.00179\\ \hline
+		Wiek & -0.013982 & 0.025582 & -0.547 & 0.58495\\ \hline 
+		Waga & 0.022851 & 0.012485 & 1.830 & 0.06783\\ \hline
 	\end{tabular}
 	\caption{Model WWW - współczynniki modelu}
 	\label{model_www}
 \end{table}
-
 \subsubsection{Model WW}
-Drugi z dopasowywanych modeli uwzględnia wiek oraz wagę zawodników. Odjęcie wzrostu ma na celu sprawdzenie jak zachowa się model po odjęciu jednej zmiennej nie będącej zmienną istotną. W tabeli \ref{model_ww} przedstawione zostały współczynniki modelu WW. Jak można zauważyć zmienne istotne dla modelu nie są już takie same, do minut na mecz dołączyła wartość stała. Ponadto waga zawodnika przestała należeć do istotnych zmiennych.
+Drugi z dopasowywanych modeli uwzględnia średni czas gry, wzrost oraz wagę zawodników. Odjęcie wieku ma na celu sprawdzenie jak zachowa się model po odjęciu jednej zmiennej nie będącej zmienną istotną. W tabeli \ref{model_ww} przedstawione zostały współczynniki modelu WW. Jak można zauważyć zmienne istotne dla nie zmieniły się, jednakże waga jest na granicy zostania zmienną istotną.
 
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
 		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
-		Minuty na mecz & 0.54356 & 0.01241 & 43.78 & $<$2e-16\\ \hline
-		Wiek & -0.01304 & 0.02661 & -0.490 & 0.62428 \\ \hline 
-		Waga & 0.00852 & 0.00857 & 0.994 & 0.32059\\ \hline
-		Stała & -3.35012 & 1.13018 & -2.964 & 0.00318\\ \hline
+		Minuty na mecz & 0.541663 & 0.012207 & 44.372 & $<$2e-16\\ \hline
+		Wzrost & -0.026028 & 0.006499 & -4.005 & 7.17e-05 \\ \hline 
+		Waga & 0.023444 & 0.012429 & 1.886 & 0.0599 \\ \hline
 	\end{tabular}
 	\caption{Model WW - współczynniki modelu}
 	\label{model_ww}
@@ -289,29 +277,28 @@ Trzeci z dopasowywanych modeli uwzględnia wiek oraz wskaźnik BMI. Omawiany wsk
 \begin{equation}
 BMI = \frac{waga}{wzrost^2}.
 \end{equation}
-W związku z tym niejawnie do modelu włączamy wagę i wzrost zawodników ligi. Wyniki tego zabiegu przedstawione są w tabeli \ref{model_wb}. Podobnie jak w modelu WW istotne zmienne to liczba minut na boisku oraz stała. 
+W związku z tym niejawnie do modelu włączamy wagę i wzrost zawodników ligi. Wyniki tego zabiegu przedstawione są w tabeli \ref{model_wb}. Ponownie, wiek okazał się być nieistotny, natomiast BMI oraz ilość minut na mecz są istotne.
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
 		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
-		Minuty na mecz & 0.54259 & 0.01238 & 43.838 & $<$2e-16\\ \hline
-		Wiek & -0.01608 & 0.02667 & -0.603 & 0.54676\\ \hline 
-		BMI & 0.09639 & 0.05878 & 1.640 & 0.10166\\ \hline  
-		Stała & -4.84181 & 1.60703 & -3.013 & 0.00272\\ \hline	
+		Minuty na mecz & 0.53943 & 0.01245 & 43.329 & $<$2e-16\\ \hline
+		Wiek & -0.03886 & 0.02571 & -1.512 & 0.1313\\ \hline 
+		BMI & -0.06666 & 0.02896 & -2.302 &  0.0218\\ \hline 	
 	\end{tabular}
 	\caption{Model WB - współczynniki modelu}
 	\label{model_wb}
 \end{table}
 \subsection{Porównanie modeli}
-W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego również przemawia za wybraniem trzeciego modelu jako najlepiej opisującego badany zbiór wartości. Jedyną statystyką przemawiającą za innym modelem niż WB jest logarytm wskaźnik wiarygodności, który wskazuje, że to pierwszy model jest najlepszy. Na podstawie zaprezentowanych wyników należy wybrać model uwzględniający wiek oraz BMI zawodników. Ponadto wykorzystując analizę wariancji ustaliliśmy, że to właśnie model WB jest modelem istotnym.
+W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego przemawia za wybraniem drugiego modelu jako najlepiej opisującego badany zbiór wartości. Logarytm wskaźnik wiarygodności wskazuje z kolei na model WWW. Na podstawie zaprezentowanych wyników nie możemy stwierdzić, który z nich jest najlepszy, gdyż każde sprawdzane kryterium wskazuje na inny model. Dodatkowo, żaden nie spełnia założeń, gdyż ich residua nie pochodzą z rozkładu normalnego.
 \begin{table}
 	\begin{center}
-		\begin{tabular}{| c | c | c | c | c |}
+		\begin{tabular}{| c | c | c | c |}
 			\hline
-			Model & $R^2$ & AIC & LogLik & W\\ \hline
-			WWW & 0.7977 & 2282.972 & -1135.486 & 0.95495\\ \hline
-			WW & 0.7971 & 2283.475 & -1136.737 & 0.95403\\ \hline 
-			WB & 0.7978 & 2281.766 & -1135.883 & 0.95493\\ \hline  
+			Model & $R^2$ & AIC & LogLik\\ \hline
+			WWW &0.9369  & 2281.809 & -1135.905\\ \hline
+			WW & 0.9358  & 2280.111 & -1136.055 \\ \hline 
+			WB & 0.937 & 2288.041 & -1140.021 \\ \hline  
 		\end{tabular}
 		\caption{Porównanie modeli}
 		\label{porownanie_modeli_w}
@@ -319,5 +306,5 @@ W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym 
 \end{table}
 
 \section{Podsumowanie}
-Model opisujący zdolności rzutowe okazał się być istotnie najlepszym spośród wszystkich testowanych przez nas.  
+W naszym sprawozdaniu dobraliśmy kilka modeli opisujących zdobywanie punktów przez koszykarzy w zależności od wielu czynników. Model opisujący zdolności rzutowe okazał się być istotnie najlepszym spośród wszystkich testowanych, na co wskazywały wyznaczone przez nas statystyki. Niestety, pomimo starań, nie udało nam się znaleźć( lub doprowadzić do) modelu spełniającego założenia 
 \end{document}

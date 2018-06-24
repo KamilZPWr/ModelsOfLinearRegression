@@ -65,13 +65,6 @@ ConstVarMC(residuals(model_origin))
 
 ###################################################################
 #Dodatkowe modele
-model_physical_1 <- lm(PPG ~ Height + MPG + Weight + Age, data = data)
-summary(model_physical_1)
-AIC(model_physical_1)
-logLik(model_physical_1) 
-shapiro.test(residuals(model_physical_1))
-plot(model_physical_1)
-
 model_physical_4 <- lm(PPG ~ Height + MPG + Weight + Age - 1,
                        data = data)
 summary(model_physical_4)
@@ -81,7 +74,7 @@ logLik(model_physical_4)
 shapiro.test(residuals(model_physical_4))
 shapiro.test(residuals(model_physical_4)[-c(64, 110, 195, 274, 302, 410, 434 )])
 
-model_physical_2 <- lm(PPG ~ MPG + Weight + Age - 1, data = data)
+model_physical_2 <- lm(PPG ~ MPG + Weight + Height - 1, data = data)
 summary(model_physical_2)
 AIC(model_physical_2)
 logLik(model_physical_2) 

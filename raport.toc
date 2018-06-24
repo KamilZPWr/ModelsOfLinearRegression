@@ -5,12 +5,12 @@
 \contentsline {subsection}{\numberline {3.1}Poprawno\IeC {\'s}\IeC {\'c} modeli}{5}
 \contentsline {subsection}{\numberline {3.2}Model I: umiej\IeC {\k e}tno\IeC {\'s}ci rzutowe zawodnik\IeC {\'o}w}{5}
 \contentsline {subsection}{\numberline {3.3}Model II: pozycje zawodnik\IeC {\'o}w}{7}
-\contentsline {subsection}{\numberline {3.4}Model III: pochodzenie zawodnik\IeC {\'o}w}{8}
-\contentsline {subsection}{\numberline {3.5}Por\IeC {\'o}wnanie modeli}{9}
-\contentsline {section}{\numberline {4}Inne testowane modele}{10}
-\contentsline {subsection}{\numberline {4.1}Model uwzgl\IeC {\k e}dniaj\IeC {\k a}cy cechy motoryczne zawodnik\IeC {\'o}w}{10}
-\contentsline {subsubsection}{\numberline {4.1.1}Model WWW}{11}
-\contentsline {subsubsection}{\numberline {4.1.2}Model WW}{11}
+\contentsline {subsection}{\numberline {3.4}Model III: pochodzenie zawodnik\IeC {\'o}w}{9}
+\contentsline {subsection}{\numberline {3.5}Por\IeC {\'o}wnanie modeli}{10}
+\contentsline {section}{\numberline {4}Inne testowane modele}{11}
+\contentsline {subsection}{\numberline {4.1}Model uwzgl\IeC {\k e}dniaj\IeC {\k a}cy cechy motoryczne zawodnik\IeC {\'o}w}{11}
+\contentsline {subsubsection}{\numberline {4.1.1}Model WWW}{12}
+\contentsline {subsubsection}{\numberline {4.1.2}Model WW}{12}
 \contentsline {subsubsection}{\numberline {4.1.3}Model WB}{12}
-\contentsline {subsection}{\numberline {4.2}Por\IeC {\'o}wnanie modeli}{12}
-\contentsline {section}{\numberline {5}Podsumowanie}{12}
+\contentsline {subsection}{\numberline {4.2}Por\IeC {\'o}wnanie modeli}{13}
+\contentsline {section}{\numberline {5}Podsumowanie}{13}
