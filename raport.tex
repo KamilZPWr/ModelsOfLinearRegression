@@ -244,15 +244,16 @@ Podsumowując wyżej wymienione modele można stwierdzić, że najlepszym z nich
 Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od predyspozycji fizycznych zawodników. Oczywiście, każdy z tych modeli musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest to niezbędna informacja do analizy modelu.
 
 \subsubsection{Model WWW}
-Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. Jedyną wpływową zmienną okazała się być ilość minut na mecz (jak zakładaliśmy wyżej, jest to najważniejszy czynnik). W tabeli \ref{model_www} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
+Pierwszy z dopasowywanych modeli uwzględnia wzrost, wiek oraz wagę zawodników. Wpływową zmienną okazała się być ilość minut na mecz (jak zakładaliśmy wyżej, jest to najważniejszy czynnik) oraz waga zawodnika. W tabeli \ref{model_www} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
 		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
-		Minuty na mecz & 0.542353 & 0.012281 & 44.161 & $<$2e-16\\ \hline
-		Wzrost & -0.023874 & 0.007604 & -3.140 & 0.00179\\ \hline
-		Wiek & -0.013982 & 0.025582 & -0.547 & 0.58495\\ \hline 
-		Waga & 0.022851 & 0.012485 & 1.830 & 0.06783\\ \hline
+		Stała & 1.55894  &  3.46942&   0.449&   0.6534    \\ \hline
+		Wzrost &     -0.03357 &   0.02288 & -1.467  & 0.1430    \\ \hline
+		Minuty na mecz &         0.54145  &  0.01245&  43.474  &$ <2e-16$\\ \hline
+		Waga  &     0.02764    &0.01643 &  1.683  & 0.0931  \\ \hline
+		Wiek   &      -0.01751  &  0.02678 & -0.654&   0.5136 \\ \hline
 	\end{tabular}
 	\caption{Model WWW - współczynniki modelu}
 	\label{model_www}
@@ -290,13 +291,13 @@ W związku z tym niejawnie do modelu włączamy wagę i wzrost zawodników ligi.
 	\label{model_wb}
 \end{table}
 \subsection{Porównanie modeli}
-W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego przemawia za wybraniem drugiego modelu jako najlepiej opisującego badany zbiór wartości. Logarytm wskaźnik wiarygodności wskazuje z kolei na model WWW. Na podstawie zaprezentowanych wyników nie możemy stwierdzić, który z nich jest najlepszy, gdyż każde sprawdzane kryterium wskazuje na inny model. Dodatkowo, żaden nie spełnia założeń, gdyż ich residua nie pochodzą z rozkładu normalnego.
-\begin{table}
+W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego przemawia za wybraniem drugiego modelu jako najlepiej opisującego badany zbiór wartości. Logarytm wskaźnika wiarygodności wskazuje z kolei na model WWW. Korzystając z metody analizy wariancji ustaliliśmy, że model WB jest modelem istotnym spośród wszystkich modeli W. Należy jednak zaznaczyć, że żaden z modeli nie spełnia założenia normalności residuów, mimo wielu prób manipulacji danymi.
+\begin{table}[h]
 	\begin{center}
 		\begin{tabular}{| c | c | c | c |}
 			\hline
 			Model & $R^2$ & AIC & LogLik\\ \hline
-			WWW &0.9369  & 2281.809 & -1135.905\\ \hline
+			WWW & 0.7974 & 2283.606 & -1135.803\\ \hline
 			WW & 0.9358  & 2280.111 & -1136.055 \\ \hline 
 			WB & 0.937 & 2288.041 & -1140.021 \\ \hline  
 		\end{tabular}
@@ -306,5 +307,5 @@ W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym 
 \end{table}
 
 \section{Podsumowanie}
-W naszym sprawozdaniu dobraliśmy kilka modeli opisujących zdobywanie punktów przez koszykarzy w zależności od wielu czynników. Model opisujący zdolności rzutowe okazał się być istotnie najlepszym spośród wszystkich testowanych, na co wskazywały wyznaczone przez nas statystyki. Niestety, pomimo starań, nie udało nam się znaleźć( lub doprowadzić do) modelu spełniającego założenia 
+W naszym sprawozdaniu dobraliśmy kilka modeli opisujących zdobywanie punktów przez koszykarzy w zależności od wielu czynników. Model opisujący zdolności rzutowe okazał się być istotnie najlepszym spośród wszystkich testowanych, na co wskazywały wyznaczone przez nas statystyki. Niestety, pomimo starań, nie udało nam się znaleźć (lub doprowadzić do) modelu spełniającego założenia.
 \end{document}

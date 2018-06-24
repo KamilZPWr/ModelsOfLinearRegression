@@ -1,4 +1,4 @@
-setwd("C:/Users/micha/Documents/GitHub/ModelsOfLinearRegression")
+#setwd("C:/Users/micha/Documents/GitHub/ModelsOfLinearRegression")
 library(readxl)
 library(car)
 data <- read_excel("data.xlsx")
@@ -65,14 +65,15 @@ ConstVarMC(residuals(model_origin))
 
 ###################################################################
 #Dodatkowe modele
-model_physical_4 <- lm(PPG ~ Height + MPG + Weight + Age - 1,
+model_physical_1 <- lm(PPG ~ Height + MPG + Weight + Age,
                        data = data)
-summary(model_physical_4)
-plot(model_physical_4)
-AIC(model_physical_4)
-logLik(model_physical_4) 
-shapiro.test(residuals(model_physical_4))
-shapiro.test(residuals(model_physical_4)[-c(64, 110, 195, 274, 302, 410, 434 )])
+
+summary(model_physical_1)
+plot(model_physical_1)
+AIC(model_physical_1)
+logLik(model_physical_1) 
+shapiro.test(residuals(model_physical_1))
+shapiro.test(residuals(model_physical_1)[-c(64, 110, 195, 274, 302, 410, 434 )])
 
 model_physical_2 <- lm(PPG ~ MPG + Weight + Height - 1, data = data)
 summary(model_physical_2)
@@ -88,11 +89,10 @@ shapiro.test(residuals(model_physical_3))
 
 ################################################################################
 
-Anova(model_physical_1, type = 2)
-anova(model_physical_1, model_physical_2, model_physical_3, model_physical_4)
+anova( model_physical_2, model_physical_3, model_physical_1)
 mydata <- data.frame(data$PPG,  data$MPG, data$Height, data$Weight)
 cor(mydata)
-plot(model_physical_4)
+
 abline(h = c(-3,3), col = "blue")  #odstające
 abline(v = 4/length(residuals(model_offense)) * 3, col = "black") #wysoka dźwignia
 which(abs((residuals(model_offense) - mean(residuals(model_offense)))/
