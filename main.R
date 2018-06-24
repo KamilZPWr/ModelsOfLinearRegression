@@ -1,4 +1,4 @@
-#setwd("C:/Users/micha/Documents/GitHub/ModelsOfLinearRegression")
+setwd("C:/Users/micha/Documents/GitHub/ModelsOfLinearRegression")
 library(readxl)
 library(car)
 data <- read_excel("data.xlsx")
@@ -144,13 +144,44 @@ while (TRUE){
 model_offense <- lm(PPG ~ MPG + FGAPG + FGp + ThreeAPG + ThreePp + FTAPG + FTp - 1, 
                     data = dane)
 summary(model_offense)
+shapiro.test(residuals(model_offense))
 AIC(model_offense)
 logLik(model_offense) 
-shapiro.test(residuals(model_offense))
 plot(model_offense)
 
 dane <- data
 dane$PPG <- log(dane$PPG)
-temp1 <- c(which(abs((residuals(model_offense) - mean(residuals(model_offense)))/sd(residuals(model11))) > 3))
-temp2 <- c(which(hatvalues(model11) > 7/length(residuals(model11)) * 3))
-dane <- dane[-temp2,]
+temp1 <- c(which(abs((residuals(model_offense) - mean(residuals(model_offense)))/sd(residuals(model_offense))) > 3))
+temp2 <- c(which(hatvalues(model_offense) > 7/length(residuals(model_offense)) * 3))
+dane <- dane[-c(temp1, temp2),]
+
+############################### PIERWIASTEK
+model_offense <- lm(PPG ~ MPG + FGAPG + FGp + ThreeAPG + ThreePp + FTAPG + FTp - 1, 
+                    data = dane)
+summary(model_offense)
+shapiro.test(residuals(model_offense))
+AIC(model_offense)
+logLik(model_offense) 
+plot(model_offense)
+
+dane <- data
+dane$PPG <- sqrt(dane$PPG)
+temp1 <- c(which(abs((residuals(model_offense) - mean(residuals(model_offense)))/sd(residuals(model_offense))) > 3))
+temp2 <- c(which(hatvalues(model_offense) > 7/length(residuals(model_offense)) * 3))
+dane <- dane[-c(temp1, temp2),]
+
+
+################################### KWADRAT
+model_offense <- lm(PPG ~ MPG + FGAPG + FGp + ThreeAPG + ThreePp + FTAPG + FTp - 1, 
+                    data = dane)
+summary(model_offense)
+shapiro.test(residuals(model_offense))
+AIC(model_offense)
+logLik(model_offense) 
+plot(model_offense)
+
+dane <- data
+dane$PPG <- (dane$PPG)^2
+temp1 <- c(which(abs((residuals(model_offense) - mean(residuals(model_offense)))/sd(residuals(model_offense))) > 3))
+temp2 <- c(which(hatvalues(model_offense) > 7/length(residuals(model_offense)) * 3))
+dane <- dane[-c(temp1, temp2),]

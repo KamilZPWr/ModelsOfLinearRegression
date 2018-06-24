@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.11.29)  24 JUN 2018 16:50
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  24 JUN 2018 15:48
+>>>>>>> 511d184aee5b6c2edc881f0ec6dab71d8ce841a8
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -745,6 +749,7 @@ Here is how much of TeX's memory you used:
  7070 multiletter control sequences out of 15000+600000
  13192 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
+<<<<<<< HEAD
  41i,9n,25p,887b,247s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2017/texmf-dist/fonts/enc/dvips/pl/plrm.e
 nc}{c:/texlive/2017/texmf-dist/fonts/enc/dvips/pl/plms.enc}{c:/texlive/2017/tex
@@ -757,6 +762,21 @@ ve/2017/texmf-dist/fonts/type1/public/pl/plmi10.pfb><c:/texlive/2017/texmf-dist
 exlive/2017/texmf-dist/fonts/type1/public/pl/plr8.pfb><c:/texlive/2017/texmf-di
 st/fonts/type1/public/pl/plsy10.pfb>
 Output written on raport.pdf (13 pages, 137860 bytes).
+=======
+ 39i,9n,25p,944b,242s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program File
+s/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc
+/dvips/pl/plms.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/pl/plmi.enc}<C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/pl/plbx10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/pl/plbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/pl/plmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plr10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plr12.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/pl/plr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/pl/plr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plsy1
+0.pfb>
+Output written on raport.pdf (12 pages, 144111 bytes).
+>>>>>>> 511d184aee5b6c2edc881f0ec6dab71d8ce841a8
 PDF statistics:
  98 PDF objects out of 1000 (max. 8388607)
  61 compressed objects within 1 object stream
