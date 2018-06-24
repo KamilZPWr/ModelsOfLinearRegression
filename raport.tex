@@ -12,15 +12,19 @@
 
 
 \begin{document}
+\title{Pakiety statystyczne \\ Sprawozdanie 3}
+\author{Michał Cerazy, Kamil Zawistowski \\ 229969, 229924}
+\maketitle
+\newpage
 \tableofcontents
 \newpage
 \section{Cel}
 Celem prowadzonych badań jest odszukanie występowania zależności między statystykami, w koszykówce, przy użyciu modeli regresji. 
 
 \section{Zbiór danych}
-Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. W omawianym okresie, w lidze wystąpiło 490 zawodników, co przekłada się na taką samą długość próbki. Polecenie wymaga próbki o długości co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych zdecydowaliśmy się na ich użycie. Dane pochodzą ze strony $kaggle.com$. 
+Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. W omawianym okresie, w lidze wystąpiło 490 zawodników( każda drużyna może zatrudniać jednocześnie 15 graczy), co przekłada się na taką samą długość próbki. Polecenie wymaga co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych, zdecydowaliśmy się na ich użycie. Dane pochodzą ze strony $kaggle.com$. 
 \subsection{Opis zmiennych}
-Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, które zmienna możep przyjąć. W sprawozdaniu zostały użyte następujące zmienne:
+Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, które zmienna może przyjąć. W sprawozdaniu zostały użyte następujące zmienne:
 \begin{itemize}
 	\item ,,Name'' -- imię oraz nazwisko,
 	\item ,,Age'' -- wiek,
@@ -52,18 +56,62 @@ Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, kt
 	\item ,,PF'' -- ilość fauli osobistych w sezonie,
 	\item ,,EFF'' -- wydajność zawodnika,
 	\item ,,AST/TOV'' -- stosunek ilości asyst do ilości strat,
-	\item ,,STL/TOV'' -- stosunek ilości przechwytów do ilości strat,
+	\item ,,STL/TOV'' -- stosunek ilości przechwytów do ilości strat.
+\end{itemize}
+	Dodatkowo, na potrzeby modeli wprowadziliśmy dodatkowe kolumny takie jak:
+\begin{itemize}	
 	\item ,,PPG'' -- średnia ilość punktów zdobywanych na mecz,
-	\item ,,MPG'' -- średnia ilość minut rozegranych na mecz.
+	\item ,,MPG'' -- średnia ilość minut rozegranych na mecz,
+	\item ,,FTAPG'' -- średnia ilość rzutów osobistych na mecz,
+	\item ,,FGAPG'' -- średnia ilość rzutów z pola na mecz,
+	\item ,,ThreeAPG'' -- średnia ilość rzutów za 3 punkty na mecz.
 \end{itemize}
 %\subsection{Wybór zmiennych zależnych i niezależnych}
 %	Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Do zmiennych niezależnych należą !!!! UZUPEŁNIĆ ZMIENNE NIEZALEŻNE !!!!. Decydujemy się na taki wybór, gdyż chcemy poznać wpływ poszczególnych statystyk na liczbę zdobywanych punktów. (?) Odnalezienie odpowiedniego modelu będzie podstawą do wyznaczania zawodników pretendujących do bycia najlepiej punktującymi w kolejnych sezonach. (?)
 	
 \section{Dopasowanie modelu}
-Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu. 
+Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu. Dodatkowo, w naszych modelach będziemy korzystać z cech fizycznych zawodników i statystyk rzutowych, dlatego usuniemy dane dotyczące asyst, bloków, zbiórek, przechwytów i strat.
 
 \subsection{Model uwzględniający umiejętności rzutowe zawodników}
-Przy pierwszym ze sprawdzanych przez nas modeli skupimy się na zdolnościach rzutowych, a więc zmiennymi objaśniającymi będą średnia ilość rzutów z pola, skuteczność z pola, średnia ilość rzutów za 3 punkty, skuteczność rzutów za 3 punkty, średnia ilość rzutów osobistych, skuteczność rzutów osobistych oraz średnia ilość minut przegranych w meczu.
+Przy pierwszym ze sprawdzanych przez nas modeli skupimy się na zdolnościach rzutowych, a więc zmiennymi objaśniającymi będą średnia ilość rzutów z pola, skuteczność z pola, średnia ilość rzutów za 3 punkty, skuteczność rzutów za 3 punkty, średnia ilość rzutów osobistych, skuteczność rzutów osobistych oraz średnia ilość minut przegranych w meczu. W tabeli \ref{offense} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
+\begin{table}[H]
+	\begin{tabular}{| c | c | c | c | c |}
+		\hline
+		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
+		FGAPG & 0.961931 & 0.025304 & 38.015 & $<$2e-16\\ \hline
+		FGp & 0.012008 & 0.003441 & 3.490 & 0.000528\\ \hline
+		ThreeAPG & 0.130223 & 0.032714 & 3.981 & 7.93e-05\\ \hline 
+		ThreePp & 0.001808 & 0.002931 & 0.617 & 0.537764\\ \hline
+		FTAPG & 0.842080 & 0.044256 & 19.027 & $<$2e-16\\ \hline
+		FTp  & -0.007247 & 0.002059 & -3.519 & 0.000474\\ \hline
+	\end{tabular}
+	\caption{Model rzutowy - współczynniki modelu}
+	\label{offense}
+\end{table}
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{offense_2}
+\caption{QQplot dla modelu rzutowego}
+\label{qqplot_offense}
+\centering
+\end{figure}
+Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 punkty są istotne( co może dziwić przy obecnych realiach gry w koszykówkę, gdzie coraz większą wagę przykłada się do szybkich rzutów trzypunktowych). P-value dla testu F wynosi $p-value: < 2.2e-16$, a więc nasz model jest lepszy niż pewna stała. Jak się okazało, w przypadku tego modelu założenia nie są spełnione: test Shapiro-Wilka i spojrzenie na Rysunek \ref{qqplot_offense} odrzuciły hipotezę o normalności residuów, a testy badające stałą średnią i wariancję( polegające na wielokrotnym losowaniu próbki 50 elementów i przeprowadzaniu t.testu i var.testu) wykazały, że średnia jest różna od zera oraz wariancja nie jest stała na poziomie istotności $\alpha=0.05$. Wyniki zawarte zostały w Tabeli \ref{zalozenia_offense}.
+\begin{table}[H]
+	\begin{tabular}{| c | c | c | c |}
+		\hline
+		W & p-value & ConstMeanMC & ConstVarMC\\ \hline
+		0.92953 & 2.028e-14 & 0.1019 & 0.2892 \\ \hline
+	\end{tabular}
+	\caption{Model rzutowy - testy założeń}
+	\label{zalozenia_offense}
+\end{table}
+\begin{figure}[t]
+	\includegraphics[width=\textwidth]{offense_4}
+	\caption{Wykres residuów i dźwigni dla modelu rzutowego}
+	\label{leverage_offense}
+	\centering
+\end{figure}
+Na Rysunku \ref{leverage_offense} niebieskimi liniami zaznaczono próg dla wartości odstających, czarną natomiast dla tych o wysokiej dźwigni. Niestety, po ich usunięciu model nadal nie spełniał założeń i pojawiły się kolejne problematyczne obserwacje( próbowaliśmy eliminować je do skutku, jednak nawet to nie przyniosło oczekiwanych rezultatów).
+ %pomimo wielokrotnego usuwania tych obserwacji 
 
 \subsection{Model uwzględniający pozycje zawodników}
 Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika wpływa na ilość zdobywanych przez niego punktów, dlatego jako zmienne objaśniające przyjęliśmy pozycję danego gracza, średnią ilość czasu spędzanego na boisku oraz jego wiek.
@@ -72,7 +120,10 @@ Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika
 Przy ostatnim z badanych modeli chcieliśmy zbadać, czy zawodnicy ze Stanów Zjednoczonych, stanowiący większość ligi, są lepszymi punktującymi niż obcokrajowcy.
 Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz pochodzenie zawodnika.
 
-\subsection{Inne testowane modele}
+\subsection{Porównanie modeli}
+R, F, AIC, LogLik, Adjusted R
+
+\section{Inne testowane modele}
 \subsection{Model uwzględniający cechy motoryczne zawodników}
 Podjęliśmy trzy próby dobrania najlepszego modelu, który uzależniony jest od predyspozycji fizycznych zawodników. Oczywiście, model musi być rozszerzony o ilość rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu.
 
@@ -127,7 +178,7 @@ W związku z tym niejawnie do modelu włączamy wagę i wzrost zawodników ligi.
 	\caption{Model WB - współczynniki modelu}
 	\label{model_wb}
 \end{table}
-\subsubsection{Porównanie modeli}
+\subsection{Porównanie modeli}
 Znając współczynniki dobranych modeli wyznaczyliśmy:
 \begin{itemize}
 	\item skorygowany współczynnik determinacji, oznaczany jako $R^2$,
@@ -151,9 +202,6 @@ Znając współczynniki dobranych modeli wyznaczyliśmy:
 \end{table}
 Każdy z dopasowanych modeli jest ,,poprawnym modelem'', gdyż ich residua mają rozkład normalny. Sprawdzenia tej hipotezy dokonaliśmy przy użyciu testu Shapiro-Wilka (długość naszej próbki nie przekracza 5000). Wartość W jest mniejsza od liczby 0.947 (wartość zaczerpnięta z tablic), co oznacza, że nie ma podstaw by odrzucić hipotezę o normalności residuów. W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego również przemawia za wybraniem trzeciego modelu jako najlepiej opisującego badany zbiór wartości. Jedyną statystyką przemawiającą za innym modelem niż WB jest logarytm wskaźnik wiarygodności, który wskazuje, że to pierwszy model jest najlepszy. Na podstawie zaprezentowanych wyników należy wybrać model uwzględniający wiek oraz BMI zawodników.
 
-
-
-\section{Wybór najlepszego modelu}
 
 \section{Podsumowanie}
 \end{document}
