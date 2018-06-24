@@ -22,7 +22,7 @@
 Celem prowadzonych badań jest odszukanie występowania zależności między statystykami, w koszykówce, przy użyciu modeli regresji. 
 
 \section{Zbiór danych}
-Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. Podczas tego sezonu w lidze wystąpiło 490 zawodników( każda drużyna może zatrudniać jednocześnie 15 graczy), co przekłada się na taką samą długość próbki. Polecenie wymaga co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych, zdecydowaliśmy się na ich użycie. Dane pochodzą ze strony $kaggle.com$. 
+Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. Podczas tego sezonu w lidze wystąpiło 490 zawodników (każda drużyna może zatrudniać jednocześnie 15 graczy), co przekłada się na taką samą długość próbki. Polecenie wymaga co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych, zdecydowaliśmy się na ich użycie. Dane pochodzą ze strony $kaggle.com$. 
 \subsection{Opis zmiennych}
 Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, które zmienna może przyjąć. W sprawozdaniu zostały użyte następujące zmienne:
 \begin{itemize}
@@ -70,11 +70,22 @@ Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, kt
 %	Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Do zmiennych niezależnych należą !!!! UZUPEŁNIĆ ZMIENNE NIEZALEŻNE !!!!. Decydujemy się na taki wybór, gdyż chcemy poznać wpływ poszczególnych statystyk na liczbę zdobywanych punktów. (?) Odnalezienie odpowiedniego modelu będzie podstawą do wyznaczania zawodników pretendujących do bycia najlepiej punktującymi w kolejnych sezonach. (?)
 	
 \section{Dopasowanie modelu}
-Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu. Dodatkowo, w naszych modelach będziemy korzystać z cech fizycznych zawodników, statystyk rzutowych, pochodzenia i pozycji, dlatego usuniemy dane dotyczące asyst, bloków, zbiórek, przechwytów, strat i drużyn, w których skończyli sezon.
+Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest to niezbędna informacja do analizy modelu. Dodatkowo, w naszych modelach będziemy korzystać z cech fizycznych zawodników, statystyk rzutowych, pochodzenia i pozycji, dlatego usuniemy dane dotyczące asyst, bloków, zbiórek, przechwytów, strat i drużyn, w których skończyli sezon.
 
+\subsection{Poprawność modeli}
+Na wstępie należy zaznaczyć, że żaden z naszych modeli nie spełnia warunku normalności residuów. Pomimo wielu podjętych prób nie udało nam się przekształcić danych tak, by residua modelu pochodziły z rozkładu normalnego. Normalizaji residuów próbowaliśmy dokonać poprzez:
+\begin{itemize}
+	\item nałożenie logarytmu na zmienną zależną,
+	\item nałożenie pierwiastków na zmienną zależną,
+	\item nałożenie potęgi na zmienną zależną,
+	\item usuwanie wartości odstających,
+	\item usuwanie wartości o dużej dźwigni.
+\end{itemize}
 \subsection{Model I: umiejętności rzutowe zawodników}
 Przy pierwszym ze sprawdzanych przez nas modeli skupimy się na zdolnościach rzutowych, a więc zmiennymi objaśniającymi będą średnia ilość rzutów z pola, skuteczność z pola, średnia ilość rzutów za 3 punkty, skuteczność rzutów za 3 punkty, średnia ilość rzutów osobistych, skuteczność rzutów osobistych oraz średnia ilość minut przegranych w meczu. W tabeli \ref{offense} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
+
 \begin{table}[H]
+	\begin{center}
 	\begin{tabular}{| c | c | c | c | c |}
 		\hline
 		Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
@@ -87,15 +98,18 @@ Przy pierwszym ze sprawdzanych przez nas modeli skupimy się na zdolnościach rz
 	\end{tabular}
 	\caption{Model rzutowy - współczynniki modelu}
 	\label{offense}
+	\end{center}
 \end{table}
+
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{offense_2}
 \caption{QQplot dla modelu rzutowego}
 \label{qqplot_offense}
 \centering
 \end{figure}
-Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 punkty są istotne( co może dziwić przy obecnych realiach gry w koszykówkę, gdzie coraz większą wagę przykłada się do szybkich rzutów trzypunktowych). P-value dla testu F wynosi $p-value: < 2.2e-16$, a więc nasz model jest lepszy niż pewna stała. Jak się okazało, w przypadku tego modelu założenia nie są spełnione: test Shapiro-Wilka i spojrzenie na Rysunek \ref{qqplot_offense} odrzuciły hipotezę o normalności residuów, a testy badające stałą średnią i wariancję( polegające na wielokrotnym losowaniu próbki 50 elementów i przeprowadzaniu t.testu i var.testu) wykazały, że średnia jest różna od zera oraz wariancja nie jest stała na poziomie istotności $\alpha=0.05$. Wyniki zawarte zostały w Tabeli \ref{zalozenia_offense}.
+Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 punkty są istotne (co może dziwić przy obecnych realiach gry w koszykówkę, gdzie coraz większą wagę przykłada się do szybkich rzutów trzypunktowych). P-value dla testu F wynosi $p-value: < 2.2e-16$, a więc nasz model jest lepszy niż pewna stała. Jak się okazało, w przypadku tego modelu założenia nie są spełnione: test Shapiro-Wilka i spojrzenie na Rysunek \ref{qqplot_offense} pozwoliły odrzucić hipotezę o normalności residuów. Testy badające stałą średnią i wariancję (polegające na wielokrotnym losowaniu próbki 50 elementów i przeprowadzaniu t.testu i var.testu) wykazały, że średnia jest różna od zera oraz wariancja nie jest stała na poziomie istotności $\alpha=0.05$. Wyniki zawarte zostały w Tabeli \ref{zalozenia_offense}.
 \begin{table}[H]
+	\begin{center}
 	\begin{tabular}{| c | c | c | c |}
 		\hline
 		W & p-value & ConstMeanMC & ConstVarMC\\ \hline
@@ -103,6 +117,7 @@ Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 pun
 	\end{tabular}
 	\caption{Model rzutowy - testy założeń}
 	\label{zalozenia_offense}
+	\end{center}
 \end{table}
 \begin{figure}[t]
 	\includegraphics[width=\textwidth]{offense_4}
@@ -110,11 +125,41 @@ Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 pun
 	\label{leverage_offense}
 	\centering
 \end{figure}
-Na Rysunku \ref{leverage_offense} niebieskimi liniami zaznaczono próg dla wartości odstających, czarną natomiast dla tych o wysokiej dźwigni. Niestety, po ich usunięciu model nadal nie spełniał założeń i pojawiły się kolejne problematyczne obserwacje( próbowaliśmy eliminować je do skutku, jednak nawet to nie przyniosło oczekiwanych rezultatów).
+Na Rysunku \ref{leverage_offense} niebieskimi liniami zaznaczono próg dla wartości odstających, czarną natomiast dla tych o wysokiej dźwigni. Niestety, po ich usunięciu model nadal nie spełniał założeń i pojawiły się kolejne problematyczne obserwacje (próbowaliśmy eliminować je do skutku, jednak również to nie przyniosło oczekiwanych rezultatów).
  %pomimo wielokrotnego usuwania tych obserwacji 
 
 \subsection{Model II: pozycje zawodników}
-Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika wpływa na ilość zdobywanych przez niego punktów, dlatego jako zmienne objaśniające przyjęliśmy pozycję danego gracza, średnią ilość czasu spędzanego na boisku oraz jego wiek.
+Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika wpływa na ilość zdobywanych przez niego punktów, dlatego jako zmienne objaśniające przyjęliśmy pozycję danego gracza, średnią ilość czasu spędzanego na boisku oraz jego wiek. W tabeli \ref{position} przedstawione są współczynniki dopasowanego modelu. Wszystkie zmienne poza wiekiem są oznaczone jaki zmienne istotne modelu. 
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c |}
+			\hline
+			Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
+			PosC & -2.654071 &  0.807253 & -3.288 & 0.001084 \\ \hline
+			PosPF &-2.535002 &  0.793808 & -3.193 & 0.001498 \\ \hline
+			PosPG &-2.506314 &  0.799289 & -3.136 &  0.001819 \\ \hline
+			PosSF &-3.007021 &  0.810325 & -3.711 & 0.000231\\ \hline
+			PosSG &-2.355508 &  0.782667 & -3.010 & 0.002753 \\ \hline
+			MPG   & 0.542043 &  0.012523 & 43.282 & $< 2e-16$\\ \hline
+			Age   &-0.008325 &  0.026757 & -0.311 & 0.755835 \\ \hline
+		\end{tabular}
+		\caption{Model pozycyjny - współczynniki modelu}
+		\label{position}
+	\end{center}
+\end{table}
+W tabeli \ref{zalozenia_position} przedstawione są wyniki testu Shapiro-Wilka oraz testów średniej i wariancji residuów. Jak wyżej wspomnieliśmy, niestety model nie spełnia założenia normalności badanych danych (jak widać również na rysunku \ref{qqplot_position}). Na rysunku \ref{leverage_position} zaznaczne zostały wartości odstające, których usunięcie również nie pomogło w normalizacji residuów.
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c |}
+			\hline
+			W & p-value & ConstMeanMC & ConstVarMC\\ \hline
+			0.95198 & 1.644e-11 & 0.0424 & 0.1784 \\ \hline
+		\end{tabular}
+		\caption{Model pozycyjny - testy założeń}
+		\label{zalozenia_position}
+	\end{center}
+\end{table}
 
 \begin{figure}[t]
 	\includegraphics[width=\textwidth]{position_2}
@@ -131,13 +176,42 @@ Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika
 
 \subsection{Model III: pochodzenie zawodników}
 Przy ostatnim z badanych modeli chcieliśmy zbadać, czy zawodnicy ze Stanów Zjednoczonych, stanowiący większość ligi, są lepszymi punktującymi niż obcokrajowcy.
-Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz pochodzenie zawodnika.
+Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz pochodzenie zawodnika. W tabeli \ref{origin} przedstawione są współczynniki dobranego modelu jak widać wszystkie zmienne są zmiennymi istotnymi.
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c |}
+			\hline
+			Zmienna & Estymacja & Błąd standardowy & T-wartość & Pr$(<|t|)$\\ \hline
+			MPG    &            0.49746  &  0.02803 & 17.746 & $< 2e-16$\\ \hline
+			Birth Placenon us & -2.05640 &   0.60703&  -3.388 & 0.000762 \\ \hline
+			Birth Placeus   &  -3.02104  &  0.30683 & -9.846  & $< 2e-16$ \\ \hline
+			MPG:Birth Placeus & 0.05583  &  0.03123 &  1.788 & 0.074431 \\ \hline
+		\end{tabular}
+		\caption{Model uwzględniający pochodzenie - współczynniki modelu}
+		\label{origin}
+	\end{center}
+\end{table}
+W tabeli \ref{zalozenia_origin} zaprezentowane są wyniki przeprowadzanych we wszystkich modelach testów. Na podstawie tych wyników można stwierdzić, że residua modelu nie pochodzą z rozkładu normalnego. Podjęte przez nas próby normalizacji residuów nie przyniosły efektów również w tym przypadku.
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c |}
+			\hline
+			W & p-value & ConstMeanMC & ConstVarMC\\ \hline
+			0.95802 & 1.347e-10 & 0.0443 & 0.1693 \\ \hline
+		\end{tabular}
+		\caption{Model uwzględniający pochodzenie - testy założeń}
+		\label{zalozenia_origin}
+	\end{center}
+\end{table}
+Na rysynku \ref{qqplot_origin} przedstawiony jest wykres ,,qqplot'' i jego ocena jest bardzo prosta i utwierdza nas w przekonaniu, że residua nie pochodzą z rozkładu normalnego.
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{origin_2}
 \caption{QQplot dla modelu uwzględniającego pochodzenie}
 \label{qqplot_origin}
 \centering
 \end{figure}
+Rysunek \ref{leverage_origin} przedstawia wartości odstające oraz o dużej dźwigni, których usunięcie również nie zmieniło poprawności modelu.
 \begin{figure}[t]
 \includegraphics[width=\textwidth]{origin_4}
 \caption{Wykres residuów i dźwigni dla modelu uwzględniającego pochodzenie}
@@ -167,7 +241,7 @@ Znając współczynniki dobranych modeli wyznaczyliśmy:
 		\label{porownanie_modeli}
 	\end{center}
 \end{table}
-Niestety, żaden z dopasowanych modeli nie jest modelem poprawnym, gdyż ich residua nie mają rozkładu normalnego. Sprawdzenia tej hipotezy dokonaliśmy przy użyciu testu Shapiro-Wilka (długość naszej próbki nie przekracza 5000). Statystyka W jest większa od liczby 0.947 (wartość zaczerpnięta z tablic), co implikuje odrzucenie hipotezy zerowej o normalności residuów. W tabeli \ref{porownanie_modeli} widać, że model I cechuje się najlepszym dopasowaniem do danych według wszystkich przedstawionych kryteriów, tak więc możemy założyć, że statystyki rzutowe najlepiej opisują zdobycze punktowe zawodników.
+Podsumowując wyżej wymienione modele można stwierdzić, że najlepszym z nich jest model uwzględniający zdobywanie punktów przez zawodników. Taki wniosek nasuwa się po analizie tabeli \ref{porownanie_modeli}. Współczynnik determinacji jest największy dla tego właśnie modelu, co oznacza, że jest on najlepiej dopasowany do naszych danych. Taką konkluzję potwierdza również kryterium informacyjne Akaikego, które najmniejszą wartość przyjmuje dla modelu nr I.
 
 \section{Inne testowane modele}
 \subsection{Model uwzględniający cechy motoryczne zawodników}
@@ -225,15 +299,8 @@ W związku z tym niejawnie do modelu włączamy wagę i wzrost zawodników ligi.
 	\label{model_wb}
 \end{table}
 \subsection{Porównanie modeli}
-Znając współczynniki dobranych modeli wyznaczyliśmy:
-\begin{itemize}
-	\item skorygowany współczynnik determinacji, oznaczany jako $R^2$,
-	\item kryterium Akaikego, oznaczane jako $AIC$,
-	\item logarytm wskaźnika wiarygodności, oznaczany jako $LogLik$,
-	\item wartość w z testu Shapiro-Wilka, oznaczana jako $W$.
-\end{itemize}
-
-\begin{table}[H]
+W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego również przemawia za wybraniem trzeciego modelu jako najlepiej opisującego badany zbiór wartości. Jedyną statystyką przemawiającą za innym modelem niż WB jest logarytm wskaźnik wiarygodności, który wskazuje, że to pierwszy model jest najlepszy. Na podstawie zaprezentowanych wyników należy wybrać model uwzględniający wiek oraz BMI zawodników. Ponadto wykorzystując analizę wariancji ustaliliśmy, że to właśnie model WB jest modelem istotnym.
+\begin{table}
 	\begin{center}
 		\begin{tabular}{| c | c | c | c | c |}
 			\hline
@@ -246,8 +313,6 @@ Znając współczynniki dobranych modeli wyznaczyliśmy:
 		\label{porownanie_modeli_w}
 	\end{center}
 \end{table}
-Każdy z dopasowanych modeli jest ,,poprawnym modelem'', gdyż ich residua mają rozkład normalny. Sprawdzenia tej hipotezy dokonaliśmy przy użyciu testu Shapiro-Wilka (długość naszej próbki nie przekracza 5000). Wartość W jest mniejsza od liczby 0.947 (wartość zaczerpnięta z tablic), co oznacza, że nie ma podstaw by odrzucić hipotezę o normalności residuów. W tabeli \ref{porownanie_modeli_w} widać, że model WB cechuje się najlepszym dopasowaniem do danych według współczynnika $R^2$. Kryterium informacyjne Akaikego również przemawia za wybraniem trzeciego modelu jako najlepiej opisującego badany zbiór wartości. Jedyną statystyką przemawiającą za innym modelem niż WB jest logarytm wskaźnik wiarygodności, który wskazuje, że to pierwszy model jest najlepszy. Na podstawie zaprezentowanych wyników należy wybrać model uwzględniający wiek oraz BMI zawodników.
-
 
 \section{Podsumowanie}
 Model opisujący zdolności rzutowe okazał się być istotnie najlepszym spośród wszystkich testowanych przez nas.  
