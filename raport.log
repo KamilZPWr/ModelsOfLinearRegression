@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  24 JUN 2018 14:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.28)  24 JUN 2018 14:52
 entering extended mode
 **./raport.tex
 (raport.tex
@@ -702,44 +702,44 @@ File: origin_4.png Graphic file (type png)
  <use origin_4.png>
 Package pdftex.def Info: origin_4.png used on input line 142.
 (pdftex.def)             Requested size: 360.0pt x 221.68738pt.
- [6 <./offense_2.png>]
-Overfull \hbox (4.31909pt too wide) in paragraph at lines 159--168
-[][] 
- []
-
-[7 <./offense_4.png>]
-Overfull \hbox (4.31909pt too wide) in paragraph at lines 176--184
+ [6 <./offense_2.png>] [7 <./offense_4.png>]
+Overfull \hbox (4.31909pt too wide) in paragraph at lines 180--189
 [][] 
  []
 
 [8 <./position_2.png>]
-Overfull \hbox (4.31909pt too wide) in paragraph at lines 195--203
+Overfull \hbox (4.31909pt too wide) in paragraph at lines 197--205
 [][] 
  []
 
-[9 <./position_4.png>] [10 <./origin_2.png>] [11 <./origin_4.png>] (raport.aux)
- ) 
+[9 <./position_4.png>]
+Overfull \hbox (4.31909pt too wide) in paragraph at lines 216--224
+[][] 
+ []
+
+[10 <./origin_2.png>] [11 <./origin_4.png>] [12] (raport.aux) ) 
 Here is how much of TeX's memory you used:
- 3644 strings out of 493323
- 48805 string characters out of 3139065
- 116471 words of memory out of 3000000
- 7092 multiletter control sequences out of 15000+200000
+ 3645 strings out of 493323
+ 48824 string characters out of 3139065
+ 116480 words of memory out of 3000000
+ 7093 multiletter control sequences out of 15000+200000
  13192 words of font info for 42 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,9n,25p,944b,242s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}{C:/Program Files/Mi
-KTeX 2.9/fonts/enc/dvips/pl/plms.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvi
-ps/pl/plmi.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plbx10.pfb><C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/public/pl/plbx12.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/pl/plmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/pl/plr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plr12.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plr17.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/pl/plr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/pl/plsy10.pfb>
-Output written on raport.pdf (11 pages, 143407 bytes).
+{C:/Program File
+s/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc
+/dvips/pl/plms.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/pl/plmi.enc}<C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/pl/plbx10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/pl/plbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/pl/plmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plr10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plr12.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/pl/plr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/pl/plr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/pl/plsy1
+0.pfb>
+Output written on raport.pdf (12 pages, 145427 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
+ 92 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
