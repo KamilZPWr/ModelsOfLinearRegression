@@ -1,4 +1,4 @@
-setwd("C:/Users/micha/Documents/GitHub/ModelsOfLinearRegression")
+#setwd("C:/Users/micha/Documents/GitHub/ModelsOfLinearRegression")
 library(readxl)
 library(car)
 data <- read_excel("data.xlsx")
@@ -9,7 +9,7 @@ data$FGAPG <- round(data$FGA / data$`Games Played`, 2)
 data$ThreeAPG <- round(data$ThreePA / data$`Games Played`, 2)
 data$Pos <- as.factor(data$Pos)  #czy to konieczne?
 data$Birth_Place <- as.factor(data$Birth_Place)
-data <- data[ , -which(names(data) %in% c("OREB","DREB","REB","AST","STL","TOV","BLK","PF","EFF","AST/TOV","STL/TOV","DREB"))]
+data <- data[ , -which(names(data) %in% c("OREB","DREB","REB","AST","STL","TOV","BLK","PF","EFF","AST/TOV","STL/TOV"))]
 
 ConstMeanMC <- function(res){# test stałej średniej residuów
   N <- 10000
@@ -101,7 +101,7 @@ mydata <- data.frame(data$PPG,  data$MPG, data$Height, data$Weight)
 cor(mydata)
 plot(model_physical_4)
 abline(h = c(-3,3), col = "blue")  #odstające
-abline(v = 2/length(residuals(model_offense)) * 3, col = "black") #wysoka dźwignia
+abline(v = 7/length(residuals(model_offense)) * 3, col = "black") #wysoka dźwignia
 which(abs((residuals(model_offense) - mean(residuals(model_offense)))/
             sd(residuals(model_offense))) > 3)
 

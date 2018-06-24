@@ -116,12 +116,37 @@ Na Rysunku \ref{leverage_offense} niebieskimi liniami zaznaczono próg dla warto
 \subsection{Model uwzględniający pozycje zawodników}
 Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika wpływa na ilość zdobywanych przez niego punktów, dlatego jako zmienne objaśniające przyjęliśmy pozycję danego gracza, średnią ilość czasu spędzanego na boisku oraz jego wiek.
 
+\begin{figure}[t]
+	\includegraphics[width=\textwidth]{position_2}
+	\caption{QQplot dla modelu uwzględniającego pozycje}
+	\label{qqplot_position}
+	\centering
+\end{figure}
+\begin{figure}[t]
+	\includegraphics[width=\textwidth]{position_4}
+	\caption{Wykres residuów i dźwigni dla modelu uwzględniającego pozycje}
+	\label{leverage_position}
+	\centering
+\end{figure}
+
 \subsection{Model uwzględniający pochodzenie zawodników}
 Przy ostatnim z badanych modeli chcieliśmy zbadać, czy zawodnicy ze Stanów Zjednoczonych, stanowiący większość ligi, są lepszymi punktującymi niż obcokrajowcy.
 Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz pochodzenie zawodnika.
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{origin_2}
+\caption{QQplot dla modelu uwzględniającego pochodzenie}
+\label{qqplot_origin}
+\centering
+\end{figure}
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{origin_4}
+\caption{Wykres residuów i dźwigni dla modelu uwzględniającego pochodzenie}
+\label{leverage_origin}
+\centering
+\end{figure}
 
 \subsection{Porównanie modeli}
-R, F, AIC, LogLik, Adjusted R
+R, AIC, LogLik, Adjusted R
 
 \section{Inne testowane modele}
 \subsection{Model uwzględniający cechy motoryczne zawodników}
