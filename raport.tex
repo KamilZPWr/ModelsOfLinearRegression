@@ -22,7 +22,7 @@
 Celem prowadzonych badań jest odszukanie występowania zależności między statystykami, w koszykówce, przy użyciu modeli regresji. 
 
 \section{Zbiór danych}
-Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. W omawianym okresie, w lidze wystąpiło 490 zawodników( każda drużyna może zatrudniać jednocześnie 15 graczy), co przekłada się na taką samą długość próbki. Polecenie wymaga co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych, zdecydowaliśmy się na ich użycie. Dane pochodzą ze strony $kaggle.com$. 
+Przedmiotem badań są statystyki poszczególnych zawodników występujących na parkietach NBA w sezonie 2014/2015. Podczas tego sezonu w lidze wystąpiło 490 zawodników( każda drużyna może zatrudniać jednocześnie 15 graczy), co przekłada się na taką samą długość próbki. Polecenie wymaga co najmniej 500 pomiarów, jednak w związku z atrakcyjnością omawianych danych, zdecydowaliśmy się na ich użycie. Dane pochodzą ze strony $kaggle.com$. 
 \subsection{Opis zmiennych}
 Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, które zmienna może przyjąć. W sprawozdaniu zostały użyte następujące zmienne:
 \begin{itemize}
@@ -70,9 +70,9 @@ Zmienne kategoryczne wyróżnione są poprzez nawiasy zawierające wartości, kt
 %	Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Do zmiennych niezależnych należą !!!! UZUPEŁNIĆ ZMIENNE NIEZALEŻNE !!!!. Decydujemy się na taki wybór, gdyż chcemy poznać wpływ poszczególnych statystyk na liczbę zdobywanych punktów. (?) Odnalezienie odpowiedniego modelu będzie podstawą do wyznaczania zawodników pretendujących do bycia najlepiej punktującymi w kolejnych sezonach. (?)
 	
 \section{Dopasowanie modelu}
-Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu. Dodatkowo, w naszych modelach będziemy korzystać z cech fizycznych zawodników i statystyk rzutowych, dlatego usuniemy dane dotyczące asyst, bloków, zbiórek, przechwytów i strat.
+Jako zmienną zależną będziemy rozważać średnią ilość punktów zdobywanych na mecz. Zasugerowane przez nas modele będą się różnić doborem zmiennych niezależnych, jednakże w każdym z nich używać będziemy średniej ilości rozegranych minut na mecz, gdyż jest niezbędna informacja do analizy modelu. Dodatkowo, w naszych modelach będziemy korzystać z cech fizycznych zawodników, statystyk rzutowych, pochodzenia i pozycji, dlatego usuniemy dane dotyczące asyst, bloków, zbiórek, przechwytów, strat i drużyn, w których skończyli sezon.
 
-\subsection{Model uwzględniający umiejętności rzutowe zawodników}
+\subsection{Model I: umiejętności rzutowe zawodników}
 Przy pierwszym ze sprawdzanych przez nas modeli skupimy się na zdolnościach rzutowych, a więc zmiennymi objaśniającymi będą średnia ilość rzutów z pola, skuteczność z pola, średnia ilość rzutów za 3 punkty, skuteczność rzutów za 3 punkty, średnia ilość rzutów osobistych, skuteczność rzutów osobistych oraz średnia ilość minut przegranych w meczu. W tabeli \ref{offense} przedstawione zostały wartości współczynników oraz pozostałe statystyki dla omawianego modelu. 
 \begin{table}[H]
 	\begin{tabular}{| c | c | c | c | c |}
@@ -113,15 +113,61 @@ Jak można zauważyć, wszystkie parametry poza skutecznością rzutów za 3 pun
 Na Rysunku \ref{leverage_offense} niebieskimi liniami zaznaczono próg dla wartości odstających, czarną natomiast dla tych o wysokiej dźwigni. Niestety, po ich usunięciu model nadal nie spełniał założeń i pojawiły się kolejne problematyczne obserwacje( próbowaliśmy eliminować je do skutku, jednak nawet to nie przyniosło oczekiwanych rezultatów).
  %pomimo wielokrotnego usuwania tych obserwacji 
 
-\subsection{Model uwzględniający pozycje zawodników}
+\subsection{Model II: pozycje zawodników}
 Podczas tworzenia tego modelu staraliśmy się określić, czy pozycja zawodnika wpływa na ilość zdobywanych przez niego punktów, dlatego jako zmienne objaśniające przyjęliśmy pozycję danego gracza, średnią ilość czasu spędzanego na boisku oraz jego wiek.
 
-\subsection{Model uwzględniający pochodzenie zawodników}
+\begin{figure}[t]
+	\includegraphics[width=\textwidth]{position_2}
+	\caption{QQplot dla modelu uwzględniającego pozycje}
+	\label{qqplot_position}
+	\centering
+\end{figure}
+\begin{figure}[t]
+	\includegraphics[width=\textwidth]{position_4}
+	\caption{Wykres residuów i dźwigni dla modelu uwzględniającego pozycje}
+	\label{leverage_position}
+	\centering
+\end{figure}
+
+\subsection{Model III: pochodzenie zawodników}
 Przy ostatnim z badanych modeli chcieliśmy zbadać, czy zawodnicy ze Stanów Zjednoczonych, stanowiący większość ligi, są lepszymi punktującymi niż obcokrajowcy.
 Jako zmienne objaśniające przyjęliśmy średnią ilość minut na mecz oraz pochodzenie zawodnika.
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{origin_2}
+\caption{QQplot dla modelu uwzględniającego pochodzenie}
+\label{qqplot_origin}
+\centering
+\end{figure}
+\begin{figure}[t]
+\includegraphics[width=\textwidth]{origin_4}
+\caption{Wykres residuów i dźwigni dla modelu uwzględniającego pochodzenie}
+\label{leverage_origin}
+\centering
+\end{figure}
 
 \subsection{Porównanie modeli}
-R, F, AIC, LogLik, Adjusted R
+Znając współczynniki dobranych modeli wyznaczyliśmy:
+\begin{itemize}
+	\item współczynnik determinacji, oznaczany jako $R^2$.
+	\item skorygowany współczynnik determinacji, oznaczany jako $aR^2$,
+	\item kryterium Akaikego, oznaczane jako $AIC$,
+	\item logarytm wskaźnika wiarygodności, oznaczany jako $LogLik$.
+\end{itemize}
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c | c |}
+			\hline
+			Model & $R^2$ & $aR^2$ & AIC & LogLik \\ \hline
+			I & 0.99317 & 0.993 & 1204.576 & -594.288\\ \hline
+			II & 0.9374 & 0.9365 & 2283.041 & -1133.52\\ \hline 
+			III & 0.9375 & 0.937 & 2281.154 & -1135.577\\ \hline  
+		\end{tabular}
+		\caption{Porównanie modeli}
+		\label{porownanie_modeli}
+	\end{center}
+\end{table}
+Niestety, żaden z dopasowanych modeli nie jest modelem poprawnym, gdyż ich residua nie mają rozkładu normalnego. Sprawdzenia tej hipotezy dokonaliśmy przy użyciu testu Shapiro-Wilka (długość naszej próbki nie przekracza 5000). Statystyka W jest większa od liczby 0.947 (wartość zaczerpnięta z tablic), co implikuje odrzucenie hipotezy zerowej o normalności residuów. W tabeli \ref{porownanie_modeli} widać, że model I cechuje się najlepszym dopasowaniem do danych według wszystkich przedstawionych kryteriów, tak więc możemy założyć, że statystyki rzutowe najlepiej opisują zdobycze punktowe zawodników.
 
 \section{Inne testowane modele}
 \subsection{Model uwzględniający cechy motoryczne zawodników}
@@ -204,4 +250,5 @@ Każdy z dopasowanych modeli jest ,,poprawnym modelem'', gdyż ich residua mają
 
 
 \section{Podsumowanie}
+Model opisujący zdolności rzutowe okazał się być istotnie najlepszym spośród wszystkich testowanych przez nas.  
 \end{document}
